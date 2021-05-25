@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Put your description here.">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bisabos</title>
-
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'E-Education') }}</title>
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 d-none d-lg-block">
-                    <a href="index.html" class="d-flex  col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none"
+                    <a href="{{ url('/') }}" class="d-flex  col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none"
                         data-label="Site logo">
                         <img src="assets/img/bisabos.png" height="40px" width="40px" alt="">
                     </a>
@@ -47,22 +51,29 @@
                         </form>
                     </div>
                 </div>
-                @if (Route::has('login'))
-                    @auth
-                        <div class="col-md-3 d-none d-lg-block text-end">
-                            <img class="rounded-circle z-depth-2" height="40px" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                            data-holder-rendered="true">
-                            <a href="register.html" class="btn btn-primary">log Out</a>
-                        </div>
-                    @else
-                        <div class="col-md-3 d-none d-lg-block text-end">
-                            <a href="login.html" class="btn btn-light me-2">Login</a>
-                            @if (Route::has('register'))
-                            <a href="register.html" class="btn btn-primary">Create account</a>
-                            @endif
-                        </div>
-                    @endauth
-                @endif
+                @guest
+                    <div class="col-md-3 d-none d-lg-block text-end">
+                        @if (Route::has('login'))
+                            <a href="{{ route('login') }}" class="btn btn-light me-2">Login</a>
+                        @endif
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn btn-primary">Create account</a>
+                        @endif
+                    </div>
+                @else
+                    <div class="col-md-3 d-none d-lg-block text-end">
+                        <img class="rounded-circle z-depth-2" height="40px" alt="100x100"
+                            src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true">
+                        <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+
+                @endguest
             </div>
         </div>
 
@@ -112,11 +123,11 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Login</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Create Account</a>
+                                        <a class="nav-link" href="{{ route('register') }}">Create Account</a>
                                     </li>
                                 @endif
                             @endauth
@@ -229,211 +240,156 @@
                             </ul>
                         </div>
                         <!-- Left Sidebar -->
-                        
+
                         <div class="d-flex flex-column bg-light bg-body shadow-lg rounded-3">
                             <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                                Tags
+                                Courses
                             </div>
                             <div class="p-3 overflow-auto" style="max-height: 42vh">
                                 <div class="nav tag-cloud">
-                                    <a href="https://laros.id/tags/laravel">Laravel</a>
-                                    <a href="https://laros.id/tags/bisnis">Bisnis</a>
-                                    <a href="https://laros.id/tags/blogging">Blogging</a>
-                                    <a href="https://laros.id/tags/template">Template</a>
-                                    <a href="https://laros.id/tags/bootstrap">Bootstrap</a>
-                                    <a href="https://laros.id/tags/security">Security</a>
-                                    <a href="https://laros.id/tags/nexmo">Nexmo</a>
-                                    <a href="https://laros.id/tags/seo">SEO</a>
-                                    <a href="https://laros.id/tags/toko-online">Toko Online</a>
-                                    <a href="https://laros.id/tags/jivochat">Jivochat</a>
-                                    <a href="https://laros.id/tags/plugin">Plugin</a>
-                                    <a href="https://laros.id/tags/tawkto">Tawkto</a>
-                                    <a href="https://laros.id/tags/tokopedia">Tokopedia</a>
-                                    <a href="https://laros.id/tags/ruang-guru">Ruang Guru</a>
-                                    <a href="https://laros.id/tags/stack">Stack</a>
-                                    <a href="https://laros.id/tags/wfh">WFH</a>
-                                    <a href="https://laros.id/tags/disqus">Disqus</a>
-                                    <a href="https://laros.id/tags/katalon">Katalon</a>
-                                    <a href="https://laros.id/tags/selenium">Selenium</a>
-                                    <a href="https://laros.id/tags/vonage">Vonage</a>
-                                    <a href="https://laros.id/tags/twilio">Twilio</a>
-                                    <a href="https://laros.id/tags/xampp">Xampp</a>
-                                    <a href="https://laros.id/tags/larablog">Larablog</a>
-                                    <a href="https://laros.id/tags/tinymce">TinyMCE</a>
-                                    <a href="https://laros.id/tags/animation">Animation</a>
-                                    <a href="https://laros.id/tags/restapi">RestAPI</a>
+                                    <a href="https://laros.id/tags/laravel">courses</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <!-- CONTENT -->
+                    @yield('content')
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="sticky-top">
-                        <div class="card rounded-3 shadow-lg mb-3">
-                            <div class="card-body">
-                                <img src="assets/img/ads1.png" height="117" width="279" class="card-img-top" alt="...">
+                        @section('rightsidebar')
+                            <div class="card rounded-3 shadow-lg mb-3">
+                                <div class="card-body">
+                                    <img src="assets/img/ads1.png" height="117" width="279" class="card-img-top" alt="...">
+                                </div>
                             </div>
-                        </div>
-                        <!-- Right Sidebar -->
-                        <div class="card text-dark bg-light shadow-lg bg-body rounded-3 mb-3">
-                            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                                Newsletter
+
+                            <div class="card text-dark bg-light shadow-lg bg-body rounded-3 mb-3">
+                                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
+                                    Newsletter
+                                </div>
+                                <div class="card-body">
+                                    <p>Get the latest information from us via email</p>
+                                    <form>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="name" placeholder="Nama">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="email" class="form-control" id="email" placeholder="Email">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p>Get the latest information from us via email</p>
-                                <form>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" id="name" placeholder="Nama">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="bg-light shadow bg-body rounded-3 mb-3">
-                            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                                Top Articles
-                            </div>
-                            <ul class="list-group list-group-flush mb-2">
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                                    <div>
-                                        <small class="text-muted">27 April 2021,</small>
-                                        <small class="text-muted">5500 views </small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="d-flex flex-column mb-3 bg-light shadow bg-body rounded">
-                            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                                Categories
-                            </div>
-                            <div class="overflow-auto" style="max-height: 42vh">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Hot News
-                                        <span class="badge bg-primary rounded-pill">3432</span>
+
+
+                            <div class="bg-light shadow bg-body rounded-3 mb-3">
+                                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
+                                    Top Articles
+                                </div>
+                                <ul class="list-group list-group-flush mb-2">
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Technology
-                                        <span class="badge bg-primary rounded-pill">1423</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Lifestyle
-                                        <span class="badge bg-primary rounded-pill">982</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Health
-                                        <span class="badge bg-primary rounded-pill">743</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Ramadhan
-                                        <span class="badge bg-primary rounded-pill">232</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Automotive
-                                        <span class="badge bg-primary rounded-pill">232</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Finance
-                                        <span class="badge bg-primary rounded-pill">231</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Travel
-                                        <span class="badge bg-primary rounded-pill">172</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Sport
-                                        <span class="badge bg-primary rounded-pill">123</span>
+                                    <li class="list-group-item">
+                                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                                        <div>
+                                            <small class="text-muted">27 April 2021,</small>
+                                            <small class="text-muted">5500 views </small>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <div
-                            class="d-flex flex-column bg-light bg-body shadow-lg rounded-3 d-md-none d-lg-none d-xl-none">
-                            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                                Tags
-                            </div>
-                            <div class="p-3 overflow-auto" style="max-height: 42vh">
-                                <div class="nav tag-cloud">
-                                    <a href="https://laros.id/tags/laravel">Laravel</a>
-                                    <a href="https://laros.id/tags/bisnis">Bisnis</a>
-                                    <a href="https://laros.id/tags/blogging">Blogging</a>
-                                    <a href="https://laros.id/tags/template">Template</a>
-                                    <a href="https://laros.id/tags/bootstrap">Bootstrap</a>
-                                    <a href="https://laros.id/tags/security">Security</a>
-                                    <a href="https://laros.id/tags/nexmo">Nexmo</a>
-                                    <a href="https://laros.id/tags/seo">SEO</a>
-                                    <a href="https://laros.id/tags/toko-online">Toko Online</a>
-                                    <a href="https://laros.id/tags/jivochat">Jivochat</a>
-                                    <a href="https://laros.id/tags/plugin">Plugin</a>
-                                    <a href="https://laros.id/tags/tawkto">Tawkto</a>
-                                    <a href="https://laros.id/tags/tokopedia">Tokopedia</a>
-                                    <a href="https://laros.id/tags/ruang-guru">Ruang Guru</a>
-                                    <a href="https://laros.id/tags/stack">Stack</a>
-                                    <a href="https://laros.id/tags/wfh">WFH</a>
-                                    <a href="https://laros.id/tags/disqus">Disqus</a>
-                                    <a href="https://laros.id/tags/katalon">Katalon</a>
-                                    <a href="https://laros.id/tags/selenium">Selenium</a>
-                                    <a href="https://laros.id/tags/vonage">Vonage</a>
-                                    <a href="https://laros.id/tags/twilio">Twilio</a>
-                                    <a href="https://laros.id/tags/xampp">Xampp</a>
-                                    <a href="https://laros.id/tags/larablog">Larablog</a>
-                                    <a href="https://laros.id/tags/tinymce">TinyMCE</a>
-                                    <a href="https://laros.id/tags/animation">Animation</a>
-                                    <a href="https://laros.id/tags/restapi">RestAPI</a>
+                            <div class="d-flex flex-column mb-3 bg-light shadow bg-body rounded">
+                                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
+                                    Depertment
+                                </div>
+                                <div class="overflow-auto" style="max-height: 42vh">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            CSE
+                                            <span class="badge bg-primary rounded-pill">3432</span>
+                                        </li> 
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                            <div
+                                class="d-flex flex-column bg-light bg-body shadow-lg rounded-3 d-md-none d-lg-none d-xl-none">
+                                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
+                                    Tags
+                                </div>
+                                <div class="p-3 overflow-auto" style="max-height: 42vh">
+                                    <div class="nav tag-cloud">
+                                        <a href="https://laros.id/tags/laravel">Laravel</a>
+                                        <a href="https://laros.id/tags/bisnis">Bisnis</a>
+                                        <a href="https://laros.id/tags/blogging">Blogging</a>
+                                        <a href="https://laros.id/tags/template">Template</a>
+                                        <a href="https://laros.id/tags/bootstrap">Bootstrap</a>
+                                        <a href="https://laros.id/tags/security">Security</a>
+                                        <a href="https://laros.id/tags/nexmo">Nexmo</a>
+                                        <a href="https://laros.id/tags/seo">SEO</a>
+                                        <a href="https://laros.id/tags/toko-online">Toko Online</a>
+                                        <a href="https://laros.id/tags/jivochat">Jivochat</a>
+                                        <a href="https://laros.id/tags/plugin">Plugin</a>
+                                        <a href="https://laros.id/tags/tawkto">Tawkto</a>
+                                        <a href="https://laros.id/tags/tokopedia">Tokopedia</a>
+                                        <a href="https://laros.id/tags/ruang-guru">Ruang Guru</a>
+                                        <a href="https://laros.id/tags/stack">Stack</a>
+                                        <a href="https://laros.id/tags/wfh">WFH</a>
+                                        <a href="https://laros.id/tags/disqus">Disqus</a>
+                                        <a href="https://laros.id/tags/katalon">Katalon</a>
+                                        <a href="https://laros.id/tags/selenium">Selenium</a>
+                                        <a href="https://laros.id/tags/vonage">Vonage</a>
+                                        <a href="https://laros.id/tags/twilio">Twilio</a>
+                                        <a href="https://laros.id/tags/xampp">Xampp</a>
+                                        <a href="https://laros.id/tags/larablog">Larablog</a>
+                                        <a href="https://laros.id/tags/tinymce">TinyMCE</a>
+                                        <a href="https://laros.id/tags/animation">Animation</a>
+                                        <a href="https://laros.id/tags/restapi">RestAPI</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @show
                     </div>
                 </div>
             </div>
