@@ -47,3 +47,6 @@ Route::get('lab', [App\Http\Controllers\LabController::class, 'index'])->name('l
 Route::get('lab/{lab}', [App\Http\Controllers\LabController::class, 'show'])->name('lab.show');
 
 Route::get('post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post.show');
+
+
+Route::get('/panel', [App\Http\Controllers\AdminPanel::class, 'index'])->name('admin.index');
