@@ -14,7 +14,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $depts=Department::all();
+        return view('department.index',compact('depts'));
     }
 
     /**
@@ -46,7 +47,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        return view('courses.index',compact('department'));
     }
 
     /**

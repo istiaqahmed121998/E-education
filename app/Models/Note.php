@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Varsity extends Model
+class Note extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
-    protected $guarded = ['name'];
 
-    public function depts()
+    public function courses(){
+        return $this->belongsTo(Course::class);
+    }
+    public function posts()
     {
-
-        return $this->belongsToMany(Department::class, 'varsity_dept', 'varsity_id', 'dept_id');
+        return $this->morphMany(Post::class, 'postable');
     }
     public function getRouteKeyName()
     {

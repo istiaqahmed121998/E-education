@@ -2,30 +2,32 @@
 
 namespace Database\Factories;
 
-use App\Models\Varsity;
+use App\Models\Lab;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VarsityFactory extends Factory
+class LabFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Varsity::class;
+    protected $model = Lab::class;
+
 
     /**
      * Define the model's default state.
      *
      * @return array
      */
+
     public function definition()
     {
-        $name=$this->faker->firstNameMale();
+        $lab='lab'.rand(0,900);
         return [
-            'name'=>$name.' University',
-            'short_name'=>$name,
-            'slug'=>strtolower($name)
+            'name' => $lab,
+            'slug' => $lab,
+            'course_id'=>rand(1,9)
         ];
     }
 }

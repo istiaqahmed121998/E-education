@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Varsity;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VarsityFactory extends Factory
+class CourseFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Varsity::class;
+    protected $model = Course::class;
 
     /**
      * Define the model's default state.
@@ -21,11 +21,12 @@ class VarsityFactory extends Factory
      */
     public function definition()
     {
-        $name=$this->faker->firstNameMale();
+        $name=$this->faker->firstNameFemale();
+        $code=$name.$this->faker->numberBetween($min = 100, $max = 500);
         return [
-            'name'=>$name.' University',
-            'short_name'=>$name,
-            'slug'=>strtolower($name)
+            'name'=>$name,
+            'course_code'=>$code,
+            'slug'=>$code,
         ];
     }
 }

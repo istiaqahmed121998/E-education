@@ -21,8 +21,11 @@ class DepartmentFactory extends Factory
      */
     public function definition()
     {
+        $name=$this->faker->firstNameMale();
         return [
-            //
+            'name'=>$name,
+            'short_name'=>$name,
+            'slug'=>strtolower($name)
         ];
     }
 }

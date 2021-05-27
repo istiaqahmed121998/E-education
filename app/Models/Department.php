@@ -14,4 +14,12 @@ class Department extends Model
     public function varsities(){
         return $this->belongsToMany(Varsity::class,'varsity_dept','dept_id','varsity_id');
     }
+
+    public function courses(){
+        return $this->belongsToMany(Course::class,'dept_course','dept_id','course_id');
+    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

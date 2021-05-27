@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Varsity;
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 
-class VarsityController extends Controller
+class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class VarsityController extends Controller
      */
     public function index()
     {
-        $varsities = Varsity::all();
-
-        return view('varsities.index',compact('varsities'));
+        //
     }
 
     /**
@@ -43,21 +41,21 @@ class VarsityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Assignment  $assignment
      * @return \Illuminate\Http\Response
      */
-    public function show(Varsity $varsity)
+    public function show(Assignment $assignment)
     {
-        return view('department.index',compact('varsity'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Assignment  $assignment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Varsity $varsity)
+    public function edit(Assignment $assignment)
     {
         //
     }
@@ -66,10 +64,10 @@ class VarsityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Assignment  $assignment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Varsity $varsity)
+    public function update(Request $request, Assignment $assignment)
     {
         //
     }
@@ -77,11 +75,11 @@ class VarsityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Assignment  $assignment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Varsity $varsity)
+    public function destroy(Assignment $assignment)
     {
-        
+        //
     }
 }

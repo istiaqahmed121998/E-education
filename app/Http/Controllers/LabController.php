@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Varsity;
+use App\Models\Course;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 
-class VarsityController extends Controller
+class LabController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class VarsityController extends Controller
      */
     public function index()
     {
-        $varsities = Varsity::all();
-
-        return view('varsities.index',compact('varsities'));
+        $labs=Lab::all();
+        return view('labs.index',compact('labs'));
     }
 
     /**
@@ -43,21 +43,23 @@ class VarsityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function show(Varsity $varsity)
+    public function show(Lab $lab)
     {
-        return view('department.index',compact('varsity'));
+       // dd($lab);
+        return view('post.index',compact('lab'));
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function edit(Varsity $varsity)
+    public function edit(Lab $lab)
     {
         //
     }
@@ -66,10 +68,10 @@ class VarsityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Varsity $varsity)
+    public function update(Request $request, Lab $lab)
     {
         //
     }
@@ -77,11 +79,11 @@ class VarsityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Varsity $varsity)
+    public function destroy(Lab $lab)
     {
-        
+        //
     }
 }

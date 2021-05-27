@@ -17,6 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('short_name');
+            $table->string('slug')->unique();
             $table->string('dean')->nullable();
             $table->timestamps();
         });

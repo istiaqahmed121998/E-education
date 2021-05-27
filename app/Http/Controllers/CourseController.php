@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Varsity;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class VarsityController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class VarsityController extends Controller
      */
     public function index()
     {
-        $varsities = Varsity::all();
-
-        return view('varsities.index',compact('varsities'));
+        $courses=Course::all();
+        return view('courses.index',compact('courses'));
     }
 
     /**
@@ -43,21 +42,22 @@ class VarsityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Varsity $varsity)
+    public function show(Course $course)
     {
-        return view('department.index',compact('varsity'));
+        // dd($course->labs->count());
+        return view('courses.show',compact('course'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Varsity $varsity)
+    public function edit(Course $course)
     {
         //
     }
@@ -66,10 +66,10 @@ class VarsityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Varsity $varsity)
+    public function update(Request $request, Course $course)
     {
         //
     }
@@ -77,11 +77,25 @@ class VarsityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Varsity  $varsity
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Varsity $varsity)
+    public function destroy(Course $course)
     {
-        
+        //
     }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function lab(Course $course)
+    {
+
+        return view('labs.index',compact('course'));
+    }
+
+
 }
