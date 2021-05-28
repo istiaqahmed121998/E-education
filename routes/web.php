@@ -67,10 +67,10 @@ Route::middleware(['auth'])->prefix('/panel')->group(function () {
         Route::get('/getall', [App\Http\Controllers\CourseController::class, 'getAll'])->name('course.ajaxget');
     });
 
-    Route::group(["prefix" => 'course'], function () {
-        Route::post('/', [App\Http\Controllers\CourseController::class, 'index'])->name('post.index');
-        Route::get('/add', [App\Http\Controllers\CourseController::class, 'create'])->name('post.create');
-        Route::post('/add', [App\Http\Controllers\CourseController::class, 'store'])->name('post.store');
-        Route::get('/getall', [App\Http\Controllers\CourseController::class, 'getAll'])->name('post.ajaxget');
+    Route::group(["prefix" => 'post'], function () {
+        Route::post('/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+        Route::get('/add', [App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+        Route::post('/add', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+        Route::get('/getall', [App\Http\Controllers\PostController::class, 'getAll'])->name('post.ajaxget');
     });
 });
