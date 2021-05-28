@@ -5,7 +5,10 @@
 <head>
 	<base href="">
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     @section('header')
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--begin::Fonts-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 	<!--end::Fonts-->
@@ -33,8 +36,8 @@
 	<!--begin::Header Mobile-->
 	<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
-		<a href="index.html">
-			<img alt="Logo" src="assets/media/logos/logo-light.png" />
+		<a href="{{ route('admin.index') }}">
+			<img alt="Logo" src="{{ asset('assets/media/logos/logo-light.png') }}" />
 		</a>
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
@@ -44,11 +47,6 @@
 				<span></span>
 			</button>
 			<!--end::Aside Mobile Toggle-->
-			<!--begin::Header Menu Mobile Toggle-->
-			<button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
-				<span></span>
-			</button>
-			<!--end::Header Menu Mobile Toggle-->
 			<!--begin::Topbar Mobile Toggle-->
 			<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 				<span class="svg-icon svg-icon-xl">
@@ -228,7 +226,7 @@
 					<i class="symbol-badge bg-success"></i>
 				</div>
 				<div class="d-flex flex-column">
-					<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
+					<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ Auth::user()->name }}</a>
 					<div class="text-muted mt-1">Application Developer</div>
 					<div class="navi mt-2">
 						<a href="#" class="navi-item">
@@ -250,10 +248,14 @@
 										<!--end::Svg Icon-->
 									</span>
 								</span>
-								<span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+								<span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
 							</span>
 						</a>
-						<a href="#" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+						<a href="{{ route('logout') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5" onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
 					</div>
 				</div>
 			</div>

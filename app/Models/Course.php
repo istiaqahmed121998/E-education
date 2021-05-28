@@ -6,14 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    
     use HasFactory;
+
+    protected $fillable = ['name','course_code','slug','course_credit'];
+
     public function depts(){
-        return $this->belongsToMany(Department::class,'dept_course','varsity_id','dept_id');
+        return $this->belongsToMany(Department::class,'dept_course','course_id','dept_id');
     }
 
     public function prerequisite()
     {
-        return $this->hasMany(Course::class, 'course_prerequisite_id','id');
+        return $this->belongsToMany(Course::class,'course_prerequisite','course_id','course_prerequisite_id');
     }
 
     public function labs(){

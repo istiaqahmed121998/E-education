@@ -4,7 +4,7 @@
         <!--begin::Menu Nav-->
         <ul class="menu-nav">
             <li class="menu-item menu-item-active" aria-haspopup="true">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('admin.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="menu-section">
-                <h4 class="menu-text">Custom</h4>
+                <h4 class="menu-text">Application</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
@@ -57,13 +57,13 @@
                 </div>
             </li>			
             <li class="menu-section">
-                <h4 class="menu-text">Features</h4>
+                <h4 class="menu-text">Institution</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon-graphic"></i>
-                    <span class="menu-text">Themes</span>
+                    <span class="menu-text">Varsity</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">
@@ -71,15 +71,15 @@
                     <ul class="menu-subnav">
                         <li class="menu-item menu-item-parent" aria-haspopup="true">
                             <span class="menu-link">
-                                <span class="menu-text">Themes</span>
+                                <span class="menu-text">Varsity</span>
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="layout/themes/aside-light.html" class="menu-link">
+                            <a class="menu-link" data-toggle="modal" data-target="#varsityModal">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Light Aside</span>
+                                <span class="menu-text">Add New Varsity</span>
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
@@ -87,7 +87,331 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Dark Header</span>
+                                <span class="menu-text">View Varsities</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Department</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Department</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a class="menu-link" data-toggle="modal" data-target="#departmentModal">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Department</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Department</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="menu-section">
+                <h4 class="menu-text">Course</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Course</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Course</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Course</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Course</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-section">
+                <h4 class="menu-text">Assesment</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Notes</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Notes</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Note</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Notes</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Notes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Labs</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Labs</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Lab</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Labs</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Labs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Assignments</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Assignment</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Assignment</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Assignments</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Assignments</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Books</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Books</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Book</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Book</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Books</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Quizs</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Quizs</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Quiz</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Quizs</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Quizs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-graphic"></i>
+                    <span class="menu-text">Previous Question</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">Questions</span>
+                            </span>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/aside-light.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add New Question</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">View Question</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="layout/themes/header-dark.html" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Specific Course Question</span>
                             </a>
                         </li>
                     </ul>

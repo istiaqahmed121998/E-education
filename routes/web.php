@@ -49,4 +49,28 @@ Route::get('lab/{lab}', [App\Http\Controllers\LabController::class, 'show'])->na
 Route::get('post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 
 
-Route::get('/panel', [App\Http\Controllers\AdminPanel::class, 'index'])->name('admin.index');
+Route::middleware(['auth'])->prefix('/panel')->group(function () {
+    Route::get('/', [App\Http\Controllers\AdminPanel::class, 'index'])->name('admin.index');
+
+    Route::group(["prefix" => 'varsity'], function () {
+        Route::post('/', [App\Http\Controllers\VarsityController::class, 'store'])->name('varsity.store');
+    });
+    Route::group(["prefix" => 'department'], function () {
+        Route::post('/', [App\Http\Controllers\DepartmentController::class, 'store'])->name('department.store');
+        Route::get('/getall', [App\Http\Controllers\DepartmentController::class, 'getAll'])->name('department.ajaxget');
+    });
+
+    Route::group(["prefix" => 'course'], function () {
+        Route::post('/', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
+        Route::get('/add', [App\Http\Controllers\CourseController::class, 'create'])->name('course.create');
+        Route::post('/add', [App\Http\Controllers\CourseController::class, 'store'])->name('course.store');
+        Route::get('/getall', [App\Http\Controllers\CourseController::class, 'getAll'])->name('course.ajaxget');
+    });
+
+    Route::group(["prefix" => 'course'], function () {
+        Route::post('/', [App\Http\Controllers\CourseController::class, 'index'])->name('post.index');
+        Route::get('/add', [App\Http\Controllers\CourseController::class, 'create'])->name('post.create');
+        Route::post('/add', [App\Http\Controllers\CourseController::class, 'store'])->name('post.store');
+        Route::get('/getall', [App\Http\Controllers\CourseController::class, 'getAll'])->name('post.ajaxget');
+    });
+});

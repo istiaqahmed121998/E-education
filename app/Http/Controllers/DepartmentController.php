@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class DepartmentController extends Controller
 {
@@ -36,7 +37,31 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'short_name'=>'required',
+            'slug'=>'required|unique:departments'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            $department=Department::create([
+                'name' => $request->get('name'),
+                'short_name'  => $request->get('short_name'),
+                'slug' => $request->get('slug')
+            ]);
+            if($department){
+                return response()->json([
+                    'message' => 'You have successfully added varsity',
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**
@@ -82,5 +107,22 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
+    }
+
+
+    /**
+     * Get a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Request $request)
+    {
+        $depts=Department::all('id','short_name');
+        if($request->query('term')){
+            $queryString=$request->query('term');
+            $depts=Department::select('id','short_name')->where('short_name', 'LIKE', "%$queryString%")->get();
+        }
+        
+        return $depts;
     }
 }

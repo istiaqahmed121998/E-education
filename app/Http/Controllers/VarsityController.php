@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\Varsity;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,34 @@ class VarsityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'short_name'=>'required',
+            'slug'=>'required|unique:varsities'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            $varsity=Varsity::create([
+                'name' => $request->get('name'),
+                'short_name'  => $request->get('short_name'),
+                'slug' => $request->get('slug')
+            ]);
+            if($varsity){
+                if($request->has('department')) {
+                    $varsity->depts()->sync($request->get('department'));
+                }
+                return response()->json([
+                    'message' => 'You have successfully added varsity',
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**

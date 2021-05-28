@@ -126,4 +126,14 @@
         <!--end::Dashboard-->
     </div>
     <!--end::Container-->
+
+    <!--begin::Modal-->
+    @include('layouts.modal')
+    <!--ends::Modal-->
+@endsection
+
+@section('extrajs')
+@parent
+<script src="{{ asset('assets/js/custom/dashboard.js') }}"></script>
+<script src="{{ asset('assets/js/pages/crud/forms/widgets/select2.js') }}"></script>
 @endsection
