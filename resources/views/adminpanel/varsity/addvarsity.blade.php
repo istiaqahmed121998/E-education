@@ -1,3 +1,7 @@
+@section('header')
+@parent
+<title>Add Varsity</title>
+@endsection
 {{-- Extends layout --}}
 @extends('layouts.default')
 {{-- Content --}}

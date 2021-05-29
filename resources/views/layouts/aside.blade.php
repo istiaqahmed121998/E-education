@@ -75,7 +75,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('varsity.create') }}" class="menu-link">
+                            <a href="{{ route('panelvarsity.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -108,7 +108,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('department.create') }}" class="menu-link">
+                            <a href="{{ route('paneldepartment.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -146,7 +146,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="layout/themes/aside-light.html" class="menu-link">
+                            <a href="{{ route('panelcourse.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -224,7 +224,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="layout/themes/aside-light.html" class="menu-link">
+                            <a href="{{ route('panelLab.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

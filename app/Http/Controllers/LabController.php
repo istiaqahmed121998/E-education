@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Lab;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LabController extends Controller
 {
@@ -26,7 +27,7 @@ class LabController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.lab.addlab');
     }
 
     /**
@@ -37,7 +38,38 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'slug'=>'required|unique:labs',
+            'course'=>'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            $course=Course::find($request->get('course'));
+            $lab=Lab::create([
+                'name' => $request->get('name'),
+                'slug' => $request->get('slug'),
+                'lab_credit'=>$request->get('lab_credit'),
+                'course_id'=>$course->id,
+            ]);
+            if($lab){
+                
+                // if($course){
+                //     $lab->course()->associate($course);
+                //     $lab->save();
+                // }
+                return response()->json([
+                    'message' => 'You have successfully added varsity',
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**

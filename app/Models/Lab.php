@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Lab extends Model
 {
     use HasFactory;
-    protected $fillable=['course_id'];
-    public function courses(){
+    protected $fillable=['name','slug','course_id'];
+    public function course(){
         return $this->belongsTo(Course::class);
     }
     public function posts()

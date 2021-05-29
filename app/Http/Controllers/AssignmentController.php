@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Course;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class AssignmentController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.assignments.addassignment');
     }
 
     /**
@@ -35,7 +36,33 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'slug'=>'required|unique:assignments',
+            'course'=>'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            $course=Course::find($request->get('course'));
+            $assignment=Assignment::create([
+                'name' => $request->get('name'),
+                'slug' => $request->get('slug'),
+                'course_id'=>$course->id,
+            ]);
+            if($assignment){
+                return dd($assignment);
+                return response()->json([
+                    'message' => 'You have successfully added Assignment',
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**

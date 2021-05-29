@@ -119,12 +119,27 @@ class DepartmentController extends Controller
      */
     public function getAll(Request $request)
     {
-        $depts=Department::all('id','short_name');
         if($request->query('term')){
             $queryString=$request->query('term');
             $depts=Department::select('id','short_name')->where('short_name', 'LIKE', "%$queryString%")->get();
+            return $depts;
         }
-        
-        return $depts;
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Varsity  $varsity
+     * @return \Illuminate\Http\Response
+     */
+    public function departmentCourses(Request $request,$id){
+        if($request->query('term')){
+            $queryString=$request->query('term');
+            $courses = Department::find($id)->courses()->where('course_code', 'LIKE', "%$queryString%")->get();
+            return response()->json(
+                $courses
+            , 200);
+        }
+
     }
 }

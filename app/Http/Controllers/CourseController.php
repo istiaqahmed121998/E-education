@@ -137,13 +137,11 @@ class CourseController extends Controller
      */
     public function getAll(Request $request)
     {
-        $courses=Course::all('id','course_code');
         if($request->query('term')){
             $queryString=$request->query('term');
             $courses=Course::select('id','course_code')->where('course_code', 'LIKE', "%$queryString%")->get();
         }
         
-        return $courses;
     }
 
 

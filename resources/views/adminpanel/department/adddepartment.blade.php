@@ -1,3 +1,8 @@
+
+@section('header')
+@parent
+<title>Add Department</title>
+@endsection
 {{-- Extends layout --}}
 @extends('layouts.default')
 {{-- Content --}}

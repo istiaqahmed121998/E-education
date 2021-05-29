@@ -8,7 +8,6 @@ var varsityClass = function () {
     var submitVarsityForm = () => {
         $('#varsity_submit').click(function (e) {
             e.preventDefault();
-            $('#varsity_add').find('input[type="text"]').val('');
             var Varsity = {
                 'name': $('#varsity_name').val(),
                 'short_name': $('#varsity_short_name').val(),
@@ -61,6 +60,7 @@ var varsityClass = function () {
                     }
                 }
             });
+            $('#varsity_add').find('input[type="text"]').val('');
         });
     }
     var slugSet = () => {

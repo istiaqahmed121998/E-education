@@ -1,7 +1,8 @@
 @section('header')
 @parent
-<title>Add Course</title>
+<title>Add Assignment</title>
 @endsection
+
 {{-- Extends layout --}}
 @extends('layouts.default')
 {{-- Content --}}
@@ -11,10 +12,10 @@
     <!--begin::Card-->
     <div class="card card-custom gutter-b example example-compact">
         <div class="card-header">
-            <h3 class="card-title">Add Course</h3>
+            <h3 class="card-title">Add Assignment</h3>
         </div>
         <!--begin::Form-->
-        <form class="form" id="course_add">
+        <form class="form" id="assignment_add">
             <div class="card-body">
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Varsity</label>
@@ -26,39 +27,27 @@
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Department</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <select class="form-control select2" id="departmentselect" name="param" multiple="multiple">
+                        <select class="form-control select2" id="department" name="param">
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course Name</label>
+                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="course_name" class="form-control" placeholder="Enter course name" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course Code</label>
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="course_code" class="form-control" placeholder="Enter course Code" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course slug</label>
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="course_slug" class="form-control" placeholder="Enter course slug" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course Credit</label>
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="number" id="course_credit" value="3" class="form-control" placeholder="Enter course credit" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label text-left col-lg-3 col-sm-12">Course Prerequisites</label>
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <select class="form-control select2" id="courseprerequisites" name="param" multiple="multiple">
+                        <select class="form-control select2" id="course" name="param">
                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label text-left col-lg-3 col-sm-12">Assignment Name</label>
+                    <div class="col-lg-9 col-md-9 col-sm-12">
+                        <input type="text" id="assignment_name" class="form-control" placeholder="Enter Assignment name" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label text-left col-lg-3 col-sm-12">Assignment slug</label>
+                    <div class="col-lg-9 col-md-9 col-sm-12">
+                        <input type="text" id="assignment_slug" class="form-control" placeholder="Enter Assignment slug" />
                     </div>
                 </div>
             </div>
@@ -82,5 +71,5 @@
 @section('extrajs')
 @parent
 <script src="{{ asset('assets/js/pages/crud/forms/widgets/select2.js') }}"></script>
-<script src="{{ asset('assets/js/custom/course/create_course.js') }}"></script>
+<script src="{{ asset('assets/js/custom/assignment/custom.js') }}"></script>
 @endsection

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assignment extends Model
 {
+
     use HasFactory;
-    public function courses(){
+    protected $fillable=['name','slug','course_id'];
+    public function course(){
         return $this->belongsTo(Course::class);
     }
     public function getRouteKeyName()
