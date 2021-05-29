@@ -24,7 +24,7 @@ Route::get('/varsities/{varsity}', [App\Http\Controllers\VarsityController::clas
 
 
 
-Route::get('/depts', [App\Http\Controllers\DepartmentController::class, 'index'])->name('dept.index');
+Route::get('/depts', [App\Http\Controllers\DepartmentController::class, 'index'])->name('department.index');
 
 Route::get('/depts/{department}', [App\Http\Controllers\DepartmentController::class, 'show'])->name('dept.show');
 
@@ -53,10 +53,15 @@ Route::middleware(['auth'])->prefix('/panel')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminPanel::class, 'index'])->name('admin.index');
 
     Route::group(["prefix" => 'varsity'], function () {
-        Route::post('/', [App\Http\Controllers\VarsityController::class, 'store'])->name('varsity.store');
+        
+        Route::post('/add', [App\Http\Controllers\VarsityController::class, 'store'])->name('varsity.store');
+        Route::get('/add', [App\Http\Controllers\VarsityController::class, 'create'])->name('varsity.create');
+        Route::get('/getall', [App\Http\Controllers\VarsityController::class, 'getAll'])->name('varsity.ajaxget');
+
     });
     Route::group(["prefix" => 'department'], function () {
-        Route::post('/', [App\Http\Controllers\DepartmentController::class, 'store'])->name('department.store');
+        Route::get('/add', [App\Http\Controllers\DepartmentController::class, 'create'])->name('department.create');
+        Route::post('/add', [App\Http\Controllers\DepartmentController::class, 'store'])->name('department.store');
         Route::get('/getall', [App\Http\Controllers\DepartmentController::class, 'getAll'])->name('department.ajaxget');
     });
 

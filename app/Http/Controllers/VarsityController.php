@@ -27,7 +27,7 @@ class VarsityController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.varsity.addvarsity');
     }
 
     /**
@@ -53,9 +53,6 @@ class VarsityController extends Controller
                 'slug' => $request->get('slug')
             ]);
             if($varsity){
-                if($request->has('department')) {
-                    $varsity->depts()->sync($request->get('department'));
-                }
                 return response()->json([
                     'message' => 'You have successfully added varsity',
                 ],200);
@@ -111,5 +108,20 @@ class VarsityController extends Controller
     public function destroy(Varsity $varsity)
     {
         
+    }
+
+
+        /**
+     * Get a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Request $request)
+    {
+        if($request->query('term')){
+            $queryString=$request->query('term');
+            $varsities=Varsity::select('id','short_name')->where('name', 'LIKE', "%$queryString%")->get();
+            return $varsities;
+        }
     }
 }

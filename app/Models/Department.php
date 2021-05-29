@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','short_name','slug','dean'];
+    protected $fillable = ['name','short_name','slug'];
     protected $guarded = ['dean'];
 
-    public function varsities(){
+    public function varsitiy(){
         return $this->belongsToMany(Varsity::class,'varsity_dept','dept_id','varsity_id');
     }
 

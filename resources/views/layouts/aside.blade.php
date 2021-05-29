@@ -75,7 +75,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a class="menu-link" data-toggle="modal" data-target="#varsityModal">
+                            <a href="{{ route('varsity.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -108,7 +108,7 @@
                             </span>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a class="menu-link" data-toggle="modal" data-target="#departmentModal">
+                            <a href="{{ route('department.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

@@ -26,7 +26,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.department.adddepartment');
     }
 
     /**
@@ -40,7 +40,8 @@ class DepartmentController extends Controller
         $validator = Validator::make($request->all(), [
             'name'=> 'required',
             'short_name'=>'required',
-            'slug'=>'required|unique:departments'
+            'slug'=>'required|unique:departments',
+            'varsity'=>'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);   
@@ -52,6 +53,7 @@ class DepartmentController extends Controller
                 'slug' => $request->get('slug')
             ]);
             if($department){
+                $department->varsitiy()->sync($request->get('varsity'));
                 return response()->json([
                     'message' => 'You have successfully added varsity',
                 ],200);
