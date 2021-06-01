@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lab;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Varsity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -16,7 +21,6 @@ class PostController extends Controller
     {
         $posts=Post::all();
         return view('post.index',compact('posts'));
-
     }
 
     /**
@@ -26,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('adminpanel.post.addpost');
+        
+        $varsities= Varsity::all();
+        return view('adminpanel.post.addpost',compact('varsities'));
     }
 
     /**
@@ -37,7 +43,54 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title'=> 'required',
+            'slug'=>'required|unique:posts',
+            'body'=>'required',
+            'type'=>'required',
+            'type_id'=>'required',
+            'metadescription'=>'required',
+            'metatag'=>'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            if($request->get('type')=='lab'){
+                $lab=Lab::findOrFail($request->get('type_id'));
+                $post=$lab->posts()->create([
+                    'title'=> $request->get('title'),
+                    'slug'=>$request->get('slug'),
+                    'body'=>$request->get('body'),
+                    'metadescription'=>$request->get('metadescription'),
+                    'metatag'=>$request->get('metatag')
+                ]);
+                if(Auth::check()){
+                    $user=User::findOrFail(Auth::id());
+                    // $user->posts()->$lab->posts()->create([
+                    //     'title'=> $request->get('title'),
+                    //     'slug'=>$request->get('slug'),
+                    //     'body'=>$request->get('body'),
+                    //     'metadescription'=>$request->get('metadescription'),
+                    //     'metatag'=>$request->get('metatag')
+                    // ]);
+
+                    $post->user()->associate($user);
+                    $post->save();
+                }
+                if($lab){
+                    return response()->json([
+                        'message' => 'You have successfully added varsity',
+                    ],200);
+                }
+            }
+            
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**

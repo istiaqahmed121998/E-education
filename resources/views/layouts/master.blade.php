@@ -159,7 +159,7 @@
                     <div class="sticky-top">
                         <div class="card mb-3 rounded-3">
                             <div class="card-body">
-                                <a href="https://bisabos.com" target="_blank" rel="noreferrer"><img
+                                <a href="{{ url('/') }}" target="_blank" rel="noreferrer"><img
                                         src="{{ asset('assets/img/ads.png') }}" alt="Bisabos - Media Pemrograman Indonesia"
                                         height="300" width="279" class="card-img-top"></a>
                             </div>
@@ -248,6 +248,8 @@
                             </ul>
                         </div>
                         <!-- Left Sidebar -->
+                        @section('leftsidebar')
+                        @show
             
                         <div class="d-flex flex-column bg-light bg-body shadow-lg rounded-3">
                             <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
@@ -259,6 +261,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 @yield('content')
@@ -278,7 +281,7 @@
         </div>
     </footer>
     <!-- End Footer -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     @yield('extrajs')
 </body>
 

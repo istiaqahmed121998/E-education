@@ -46,13 +46,11 @@ class AssignmentController extends Controller
         }
         else{
             $course=Course::find($request->get('course'));
-            $assignment=Assignment::create([
+            $assignment=$course->assignments()->create([
                 'name' => $request->get('name'),
-                'slug' => $request->get('slug'),
-                'course_id'=>$course->id,
+                'slug' => $request->get('slug')
             ]);
             if($assignment){
-                return dd($assignment);
                 return response()->json([
                     'message' => 'You have successfully added Assignment',
                 ],200);

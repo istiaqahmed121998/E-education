@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -45,12 +45,13 @@ Route::get('/courses/{course}/note', [App\Http\Controllers\CourseController::cla
 
 Route::get('lab', [App\Http\Controllers\LabController::class, 'index'])->name('lab.index');
 Route::get('lab/{lab}', [App\Http\Controllers\LabController::class, 'show'])->name('lab.show');
-
+Route::get('post/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 
 
-Route::middleware(['auth'])->prefix('/panel')->group(function () {
+Route::middleware('auth')->prefix('/panel')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminPanel::class, 'index'])->name('admin.index');
+    Route::get('/post/add', [App\Http\Controllers\PostController::class, 'index'])->name('post.create');
 
     Route::group(["prefix" => 'varsity'], function () {
         
@@ -69,9 +70,13 @@ Route::middleware(['auth'])->prefix('/panel')->group(function () {
 
     Route::group(["prefix" => 'course'], function () {
         Route::post('/', [App\Http\Controllers\CourseController::class, 'index'])->name('panelcourse.index');
+        Route::get('/{id}/all', [App\Http\Controllers\CourseController::class, 'all'])->name('panelcourse.all');
         Route::get('/add', [App\Http\Controllers\CourseController::class, 'create'])->name('panelcourse.create');
         Route::post('/add', [App\Http\Controllers\CourseController::class, 'store'])->name('panelcourse.store');
         Route::get('/getall', [App\Http\Controllers\CourseController::class, 'getAll'])->name('panelcourse.ajaxget');
+        Route::get('/{id}/labs', [App\Http\Controllers\CourseController::class, 'labs'])->name('panelcourse.lab');
+        Route::get('/{id}/assignments', [App\Http\Controllers\CourseController::class, 'assignments'])->name('panelcourse.assignment');
+        Route::get('/{id}/notes', [App\Http\Controllers\CourseController::class, 'notes'])->name('panelcourse.notes');
         Route::group(["prefix" => 'lab'], function () {
             Route::get('/add', [App\Http\Controllers\LabController::class, 'create'])->name('panelLab.create');
             Route::post('/add', [App\Http\Controllers\LabController::class, 'store'])->name('panelLab.store');
@@ -79,7 +84,11 @@ Route::middleware(['auth'])->prefix('/panel')->group(function () {
 
         Route::group(["prefix" => 'assignment'], function () {
             Route::get('/add', [App\Http\Controllers\AssignmentController::class, 'create'])->name('panelassignment.create');
-            Route::post('/add', [App\Http\Controllers\AssignmentController::class, 'store'])->name('panelLab.store');
+            Route::post('/add', [App\Http\Controllers\AssignmentController::class, 'store'])->name('panelassignment.store');
+        });
+        Route::group(["prefix" => 'note'], function () {
+            Route::get('/add', [App\Http\Controllers\NoteController::class, 'create'])->name('panelnote.create');
+            Route::post('/add', [App\Http\Controllers\NoteController::class, 'store'])->name('panelnote.store');
         });
     });
 

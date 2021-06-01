@@ -3,6 +3,9 @@
 
 var KTTinymce = function () {    
     // Private functions
+    var multipleSelector=function(){
+        $('#kt_multipleselectsplitter_2').multiselectsplitter();
+    }
     var demos = function () {
         tinymce.init({
             selector: '#kt-tinymce-4',
@@ -38,7 +41,8 @@ var KTTinymce = function () {
     return {
         // public functions
         init: function() {
-            demos(); 
+            demos();
+            multipleSelector();
         }
     };
 }();

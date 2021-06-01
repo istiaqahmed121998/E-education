@@ -47,7 +47,7 @@
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">lab slug</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="lab_slug" class="form-control" placeholder="Enter course slug" />
+                        <input type="text" id="lab_slug" class="form-control" placeholder="Enter lab slug" />
                     </div>
                 </div>
                 <div class="form-group row">

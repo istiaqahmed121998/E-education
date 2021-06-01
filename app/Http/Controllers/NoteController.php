@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NoteController extends Controller
 {
@@ -24,7 +26,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.notes.addnote');
     }
 
     /**
@@ -35,7 +37,31 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+            'slug'=>'required|unique:assignments',
+            'course'=>'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);   
+        }
+        else{
+            $course=Course::findOrFail($request->get('course'));
+            $note=$course->notes()->create([
+                'name' => $request->get('name'),
+                'slug' => $request->get('slug')
+            ]);
+            if($note){
+                return response()->json([
+                    'message' => 'You have successfully added Assignment',
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'message' => 'There is something wrong',
+                ],400);
+            }
+        }
     }
 
     /**

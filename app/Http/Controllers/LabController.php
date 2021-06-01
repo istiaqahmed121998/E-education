@@ -47,19 +47,13 @@ class LabController extends Controller
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::find($request->get('course'));
-            $lab=Lab::create([
+            $course=Course::findOrFail($request->get('course'));
+            $lab=$course->labs()->create([
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug'),
                 'lab_credit'=>$request->get('lab_credit'),
-                'course_id'=>$course->id,
             ]);
             if($lab){
-                
-                // if($course){
-                //     $lab->course()->associate($course);
-                //     $lab->save();
-                // }
                 return response()->json([
                     'message' => 'You have successfully added varsity',
                 ],200);

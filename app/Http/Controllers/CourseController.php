@@ -140,8 +140,47 @@ class CourseController extends Controller
         if($request->query('term')){
             $queryString=$request->query('term');
             $courses=Course::select('id','course_code')->where('course_code', 'LIKE', "%$queryString%")->get();
+            return $courses;
         }
         
+    }
+
+    public function all($id){
+
+        //count($model->relation);
+        // return json_encode(array("Peter"=>35, "Ben"=>37, "Joe"=>43));
+        $course=Course::find($id);
+        $group=[];
+        
+        if(Course::find($id)->labs()->count()){
+            $labs= $course->labs->toArray();
+            $group[]= json_encode(array("text"=>"Lab", "children"=>$labs), JSON_PRETTY_PRINT);
+        }
+        if(Course::find($id)->assignments()->count()){
+            $assignments= $course->assignments->toArray();
+            $group[]= json_encode(array("text"=>"Assignment", "children"=>$assignments), JSON_PRETTY_PRINT);
+        }
+        if(Course::find($id)->notes()->count()){
+            $notes= $course->notes->toArray();
+            $group[]= json_encode(array("text"=>"Note", "children"=>$notes), JSON_PRETTY_PRINT);
+        }
+        return response()->json([
+            'results' => $group,
+        ],200);
+        
+    }
+
+    public function labs($id){
+        $labs=Course::find($id)->labs;
+        return $labs;
+    }
+    public function assignments($id){
+        $assignments=Course::find($id)->assignments;
+        return $assignments;
+    }
+    public function notes($id){
+        $notes=Course::find($id)->notes;
+        return $notes;
     }
 
 

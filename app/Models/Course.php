@@ -21,19 +21,19 @@ class Course extends Model
     }
 
     public function labs(){
-        return $this->hasMany(Lab::class);
+        return $this->hasMany(Lab::class,'course_id','id');
     }
 
     public function books(){
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class,'course_id','id');
     }
 
     public function assignments(){
-        return $this->hasMany(Assignment::class);
+        return $this->hasMany(Assignment::class,'course_id','id');
     }
 
     public function notes(){
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Note::class,'course_id','id');
     }
 
     public function getRouteKeyName()

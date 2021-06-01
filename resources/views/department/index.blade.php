@@ -16,7 +16,7 @@
         <div class="card bg-light shadow bg-body rounded-3 mb-2">
             <div class="card-body tab">
                 <h2 class="card-title center">
-                    <a style="color: #ececec" href="{{ route('dept.show', ['department'=>$dept->slug]) }}">{{ $dept->name }}</a>
+                    <a style="color: #ececec" href="{{ route('department.show', ['department'=>$dept->slug]) }}">{{ $dept->name }}</a>
                 </h2>
             </div>
         </div>
