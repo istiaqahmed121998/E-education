@@ -10,9 +10,9 @@
     <div class="col-lg-6 col-md-12 col-sm-12">
         @if (isset($lab))
             <div id="section-title" class="section-title p-1 pt-3">
-                <h2 class="text-center fw-bold">{{ $lab->name }}</h2>
+                <h2 class="text-center fw-bold">{{ $lab ?? ''->name }}</h2>
             </div>
-            @foreach ($lab->posts as $post)
+            @foreach ($lab ?? ''->posts as $post)
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
                     <div class="card-body">
                         <h2 class="card-title">
@@ -26,7 +26,7 @@
                                     <path
                                         d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                 </svg>
-                                47 Reactions
+                                0 Reactions
                             </small>
                             <small class="pt-2 pb-2 me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor"
@@ -36,7 +36,7 @@
                                     <path
                                         d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                 </svg>
-                                10 Comments
+                                0 Comments
                             </small>
                             <small class="pt-2 pb-2 me-2 ms-auto">
                                 <a href="{{ $post->postable->slug }}">{{ $post->postable->name }}</a>
@@ -63,7 +63,7 @@
                                     <path
                                         d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                 </svg>
-                                47 Reactions
+                                0 Reactions
                             </small>
                             <small class="pt-2 pb-2 me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor"
@@ -73,7 +73,7 @@
                                     <path
                                         d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                 </svg>
-                                10 Comments
+                                0 Comments
                             </small>
                             <small class="pt-2 pb-2 me-2 ms-auto">
                                 'change'
@@ -223,124 +223,26 @@
                 <img src="assets/img/ads1.png" height="117" width="279" class="card-img-top" alt="...">
             </div>
         </div>
-        <div class="card text-dark bg-light shadow-lg bg-body rounded-3 mb-3">
-            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                Newsletter
-            </div>
-            <div class="card-body">
-                <p>Get the latest information from us via email</p>
-                <form>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="Nama">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
         <div class="bg-light shadow bg-body rounded-3 mb-3">
             <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                Top Articles
+                Varsities
             </div>
             <ul class="list-group list-group-flush mb-2">
+                @foreach ($varsities as $varsity)
                 <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                    {{ $varsity->name }}
                     <div>
                         <small class="text-muted">27 April 2021,</small>
                         <small class="text-muted">5500 views </small>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                    <div>
-                        <small class="text-muted">27 April 2021,</small>
-                        <small class="text-muted">5500 views </small>
-                    </div>
-                </li>
+                @endforeach
+                
             </ul>
         </div>
-        <div class="d-flex flex-column mb-3 bg-light shadow bg-body rounded">
-            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                Categories
-            </div>
-            <div class="overflow-auto" style="max-height: 42vh">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Hot News
-                        <span class="badge bg-primary rounded-pill">3432</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Technology
-                        <span class="badge bg-primary rounded-pill">1423</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Lifestyle
-                        <span class="badge bg-primary rounded-pill">982</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Health
-                        <span class="badge bg-primary rounded-pill">743</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Ramadhan
-                        <span class="badge bg-primary rounded-pill">232</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Automotive
-                        <span class="badge bg-primary rounded-pill">232</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Finance
-                        <span class="badge bg-primary rounded-pill">231</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Travel
-                        <span class="badge bg-primary rounded-pill">172</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Sport
-                        <span class="badge bg-primary rounded-pill">123</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+
+
         <div class="d-flex flex-column bg-light bg-body shadow-lg rounded-3 d-md-none d-lg-none d-xl-none">
             <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
                 Tags

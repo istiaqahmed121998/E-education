@@ -148,7 +148,7 @@ var labClass = function () {
 
     var slugSet = () => {
         $('#lab_name').keyup(() => {
-            var course=(!!$('#course').select2('data')[0].text ? ($('#course').select2('data')[0].text).toLowerCase()+'-' : '').trim();
+            var course=(!!$('#course').select2('data')[0].text ? convertToSlug(($('#course').select2('data')[0].text).toLowerCase())+'-' : '').trim();
             $('#lab_slug').val(course+convertToSlug($('#lab_name').val()));
         });
     }

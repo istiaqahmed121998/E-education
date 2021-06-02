@@ -78,8 +78,8 @@ Route::middleware('auth')->prefix('/panel')->group(function () {
         Route::get('/{id}/labs', [App\Http\Controllers\CourseController::class, 'labs'])->name('panelcourse.lab');
         Route::get('/{id}/assignments', [App\Http\Controllers\CourseController::class, 'assignments'])->name('panelcourse.assignment');
         Route::get('/{id}/notes', [App\Http\Controllers\CourseController::class, 'notes'])->name('panelcourse.notes');
+        Route::get('/{id}/assessments', [App\Http\Controllers\CourseController::class, 'assessments'])->name('panelcourse.assessment');
         Route::group(["prefix" => 'lab'], function () {
-            
             Route::get('/add', [App\Http\Controllers\LabController::class, 'create'])->name('panelLab.create');
             Route::post('/add', [App\Http\Controllers\LabController::class, 'store'])->name('panelLab.store');
         });
@@ -87,6 +87,13 @@ Route::middleware('auth')->prefix('/panel')->group(function () {
             Route::get('/add', [App\Http\Controllers\AssignmentController::class, 'create'])->name('panelassignment.create');
             Route::post('/add', [App\Http\Controllers\AssignmentController::class, 'store'])->name('panelassignment.store');
         });
+
+        Route::group(["prefix" => 'assessment'], function () {
+            Route::get('/add', [App\Http\Controllers\AssessmentController::class, 'create'])->name('panelassessment.create');
+            Route::post('/add', [App\Http\Controllers\AssessmentController::class, 'store'])->name('panelassessment.store');
+        });
+
+
         Route::group(["prefix" => 'note'], function () {
             Route::get('/add', [App\Http\Controllers\NoteController::class, 'create'])->name('panelnote.create');
             Route::post('/add', [App\Http\Controllers\NoteController::class, 'store'])->name('panelnote.store');
@@ -95,6 +102,8 @@ Route::middleware('auth')->prefix('/panel')->group(function () {
     Route::group(["prefix" => 'post'], function () {
         Route::get('/add', [App\Http\Controllers\PostController::class, 'create'])->name('panelpost.create');
         Route::post('/add', [App\Http\Controllers\PostController::class, 'store'])->name('panelpost.store');
+        Route::get('/edit/{post}', [App\Http\Controllers\PostController::class, 'edit'])->name('panelpost.edit');
+        Route::patch('/edit/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('panelpost.update');
         Route::get('/getall', [App\Http\Controllers\PostController::class, 'getAll'])->name('panelpost.ajaxget');
     });
 });

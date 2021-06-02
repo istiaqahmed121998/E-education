@@ -80,11 +80,11 @@ var departmentClass = function () {
         }
         var slugSet = () => {
             $('#department_short_name').keyup(() => {
-                var varsity=(!!$('#varsity_select').select2('data')[0].text ? ($('#varsity_select').select2('data')[0].text).toLowerCase()+'-' : '').trim();
+                var varsity=(!!$('#varsity_select').select2('data')[0].text ? convertToSlug(($('#varsity_select').select2('data')[0].text).toLowerCase())+'-' : '').trim();
                 $('#department_slug').val(varsity+convertToSlug($('#department_short_name').val()));
             });
             $('#varsity_select').change(() => {
-                var varsity1=(!!$('#varsity_select').select2('data')[0].text ? ($('#varsity_select').select2('data')[0].text).toLowerCase()+'-' : '').trim();
+                var varsity1=(!!$('#varsity_select').select2('data')[0].text ? convertToSlug(($('#varsity_select').select2('data')[0].text).toLowerCase())+'-' : '').trim();
                 var department=(!!$("#department_short_name").val() ? $("#department_short_name").val() : '').trim();
                 $('#department_slug').val(varsity1+convertToSlug(department));
             });

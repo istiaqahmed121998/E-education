@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\Lab;
-use App\Models\Varsity;
+use App\Models\Assessment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Course;
 
-class LabController extends Controller
+class AssessmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class LabController extends Controller
      */
     public function index()
     {
-        $labs=Lab::all();
-        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('labs.index',compact('labs','varsities'));
+        //
     }
 
     /**
@@ -29,7 +26,7 @@ class LabController extends Controller
      */
     public function create()
     {
-        return view('adminpanel.lab.addlab');
+        return view('adminpanel.assesment.addassessment');
     }
 
     /**
@@ -42,22 +39,21 @@ class LabController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=> 'required',
-            'slug'=>'required|unique:labs',
+            'slug'=>'required|unique:assessments',
             'course'=>'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::findOrFail($request->get('course'));
-            $lab=$course->labs()->create([
+            $course=Course::find($request->get('course'));
+            $assessment=$course->assessments()->create([
                 'name' => $request->get('name'),
-                'slug' => $request->get('slug'),
-                'lab_credit'=>$request->get('lab_credit'),
+                'slug' => $request->get('slug')
             ]);
-            if($lab){
+            if($assessment){
                 return response()->json([
-                    'message' => 'You have successfully added varsity',
+                    'message' => 'You have successfully added Assignment',
                 ],200);
             }
             else{
@@ -71,24 +67,21 @@ class LabController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lab  $lab
+     * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function show(Lab $lab)
+    public function show(Assessment $assessment)
     {
-       // dd($lab);
-       $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('post.index',compact('lab','varsities'));
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lab  $lab
+     * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lab $lab)
+    public function edit(Assessment $assessment)
     {
         //
     }
@@ -97,10 +90,10 @@ class LabController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lab  $lab
+     * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lab $lab)
+    public function update(Request $request, Assessment $assessment)
     {
         //
     }
@@ -108,10 +101,10 @@ class LabController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lab  $lab
+     * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lab $lab)
+    public function destroy(Assessment $assessment)
     {
         //
     }

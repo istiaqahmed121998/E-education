@@ -62,24 +62,7 @@
     <div class="sticky-top">
         <div class="card rounded-3 shadow-lg mb-3">
             <div class="card-body">
-                <img src="assets/img/ads1.png" height="117" width="279" class="card-img-top" alt="...">
-            </div>
-        </div>
-        <div class="card text-dark bg-light shadow-lg bg-body rounded-3 mb-3">
-            <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                Newsletter
-            </div>
-            <div class="card-body">
-                <p>Get the latest information from us via email</p>
-                <form>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="Nama">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
+                <img src="{{ asset('assets/img/ads1.png') }}" height="117" width="279" class="card-img-top" alt="...">
             </div>
         </div>
         <div class="bg-light shadow bg-body rounded-3 mb-3">

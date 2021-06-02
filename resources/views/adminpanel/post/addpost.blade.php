@@ -36,6 +36,7 @@
                                 <option value="lab">Lab</option>
                                 <option value="assignment">Assignment</option>
                                 <option value="note">Notes</option>
+                                <option value="assessment">Assessment</option>
                             </select>
                         </div>
                         <div class="col-lg-3">
@@ -55,13 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <!-- <div id="kt-ckeditor-3-toolbar"></div>
-
-                        <div id="ktckeditor" name="body">
-
-                        </div> -->
-
-                        <textarea name="editor1" id="editor1">
+                    <textarea name="editor1" id="editor1">
                     This is my textarea to be replaced with CKEditor 4.
                     </textarea>
                     </div>

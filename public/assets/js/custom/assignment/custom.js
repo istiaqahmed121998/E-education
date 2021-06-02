@@ -149,7 +149,7 @@ var assingmentClass = function () {
 
     var slugSet = () => {
         $('#assignment_name').keyup(() => {
-            var course=(!!$('#course').select2('data')[0].text ? ($('#course').select2('data')[0].text).toLowerCase()+'-' : '').trim();
+            var course=(!!$('#course').select2('data')[0].text ? convertToSlug(($('#course').select2('data')[0].text).toLowerCase())+'-' : '').trim();
             $('#assignment_slug').val(course+convertToSlug($('#assignment_name').val()));
         });
     }

@@ -32,6 +32,10 @@ class Course extends Model
         return $this->hasMany(Assignment::class,'course_id','id');
     }
 
+    public function assessments(){
+        return $this->hasMany(Assessment::class,'course_id','id');
+    }
+
     public function notes(){
         return $this->hasMany(Note::class,'course_id','id');
     }

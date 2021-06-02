@@ -154,15 +154,12 @@ var courseClass = function () {
 
     var slugSet = () => {
         $('#course_code').keyup(() => {
-            $('#course_slug').val(convertToSlug($('#course_code').val()));
-        });
-        $('#course_code').keyup(() => {
-            var varsity=(!!$('#varsity').select2('data')[0].text ? ($('#varsity').select2('data')[0].text).toLowerCase()+'-' : '').trim();
-            $('#course_slug').val(varsity+convertToSlug($('#course_code').val()));
+            var varsity=(!!$('#varsity').select2('data')[0].text ? convertToSlug(($('#varsity').select2('data')[0].text).toLowerCase())+'-' : '').trim();
+            $('#course_slug').val((varsity)+convertToSlug($('#course_code').val()));
         });
         $('#varsity').change(() => {
-            var varsity1=(!!$('#varsity').select2('data')[0].text ? ($('#varsity').select2('data')[0].text).toLowerCase()+'-' : '').trim();
-            var course=(!!$("#course_code").val() ? $("#course_code").val() : '').trim();
+            var varsity1=(!!$('#varsity').select2('data')[0].text ? convertToSlug(($('#varsity').select2('data')[0].text).toLowerCase())+'-' : '').trim();
+            var course=(!!$("#course_code").val() ? convertToSlug($("#course_code").val()) : '').trim();
             $('#course_slug').val(varsity1+convertToSlug(course));
         });
     }

@@ -182,6 +182,10 @@ class CourseController extends Controller
         $notes=Course::find($id)->notes;
         return $notes;
     }
+    public function assessment($id){
+        $assessments=Course::find($id)->assessments;
+        return $assessments;
+    }
 
 
 }

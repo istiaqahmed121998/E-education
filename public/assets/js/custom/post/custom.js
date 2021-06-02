@@ -123,6 +123,9 @@ var KTTinymce = function () {
             else if($('#type').val()=='note'){
                 url=window.location.origin + `/panel/course/${$('#course').val()}/notes`
             }
+            else if($('#type').val()=='assessment'){
+                url=window.location.origin + `/panel/course/${$('#course').val()}/assessment`
+            }
             $('#type_id').select2({
                 minimumResultsForSearch: Infinity,
                 ajax: {

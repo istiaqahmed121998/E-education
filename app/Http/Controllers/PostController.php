@@ -19,8 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
-        return view('post.index',compact('posts'));
+        $posts=Post::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('post.index',compact('posts','varsities'));
     }
 
     /**
@@ -67,14 +68,6 @@ class PostController extends Controller
                 ]);
                 if(Auth::check()){
                     $user=User::findOrFail(Auth::id());
-                    // $user->posts()->$lab->posts()->create([
-                    //     'title'=> $request->get('title'),
-                    //     'slug'=>$request->get('slug'),
-                    //     'body'=>$request->get('body'),
-                    //     'metadescription'=>$request->get('metadescription'),
-                    //     'metatag'=>$request->get('metatag')
-                    // ]);
-
                     $post->user()->associate($user);
                     $post->save();
                 }
@@ -112,7 +105,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('adminpanel.post.editpost',compact('post'));
     }
 
     /**
@@ -124,7 +117,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update([
+            'title'  => $request->get('edit_title'),
+            'body'  => $request->get('body'),
+            'slug' => $request->get('edit_slug'),
+        ]);
+        if($post){
+            return redirect()->route('admin.index');
+        }
     }
 
     /**

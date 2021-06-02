@@ -39,7 +39,7 @@ class VarsityController extends Controller
      */
     public function create()
     {
-        return view('adminpanel.varsity.addvarsity');
+        return view('adminpanel.varsity.addvarsity'); 
     }
 
     /**

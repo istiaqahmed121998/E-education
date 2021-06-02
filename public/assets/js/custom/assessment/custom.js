@@ -1,4 +1,4 @@
-var noteClass = function () {
+var assingmentClass = function () {
     var convertToSlug = (Text) => {
         return Text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
     }
@@ -6,13 +6,13 @@ var noteClass = function () {
     var convertToObject = (data) => {
         return JSON.parse(data);
     }
-    var submitNoteForm = () => {
+    var submitAssessmentForm = () => {
         $('#submit').click(function (e) {
             
             e.preventDefault();
             var lab = {
-                'name': $('#note_name').val(),
-                'slug': $('#note_slug').val(),
+                'name': $('#assessment_name').val(),
+                'slug': $('#assessment_slug').val(),
                 'course': $('#course').val(),
             }
             $('#department').val([]).trigger('change');
@@ -20,7 +20,7 @@ var noteClass = function () {
             $('#course').val([]).trigger('change');
             $.ajax({
                 type: 'POST',
-                url: window.location.origin + '/panel/course/note/add',
+                url: window.location.origin + '/panel/course/assessment/add',
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 data: lab,
 
@@ -52,7 +52,7 @@ var noteClass = function () {
                     }
                 }
             });
-            $('#note_add').find('input[type="text"]').val('');
+            $('#assessment_add').find('input[type="text"]').val('');
         });
     }
     var varsitySelect = () => {
@@ -148,16 +148,16 @@ var noteClass = function () {
     }
 
     var slugSet = () => {
-        $('#note_name').keyup(() => {
+        $('#assessment_name').keyup(() => {
             var course=(!!$('#course').select2('data')[0].text ? convertToSlug(($('#course').select2('data')[0].text).toLowerCase())+'-' : '').trim();
-            $('#note_slug').val((course)+convertToSlug($('#note_name').val()));
+            $('#assessment_slug').val(course+convertToSlug($('#assessment_name').val()));
         });
     }
 
     return {
         // public functions
         init: function () {
-            submitNoteForm();
+            submitAssessmentForm();
             varsitySelect();
             departmentSelect();
             courseSelect();
@@ -169,5 +169,5 @@ var noteClass = function () {
 
 jQuery(document).ready(function () {
 
-    noteClass.init();
+    assingmentClass.init();
 });
