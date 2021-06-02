@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Post extends Model
 {
     use HasFactory;
     protected $fillable=['title','slug','body','metadescription','metatag','user_id'];
+    protected $types = [
+        'lab' => 'App\Model\Lab',
+    ];
 
     public function postable()
     {
@@ -22,5 +26,15 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function getImageableTypeAttribute($type) {
+        // transform to lower case
+        $type = strtolower($type);
+
+        // to make sure this returns value from the array
+        return Arr::get($this->types, $type, $type);
+
+        // which is always safe, because new 'class'
+        // will work just the same as new 'Class'
     }
 }

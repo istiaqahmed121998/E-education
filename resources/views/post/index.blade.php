@@ -188,7 +188,12 @@
                                 0 Comments
                             </small>
                             <small class="pt-2 pb-2 me-2 ms-auto">
-                                <a href="{{ $post->postable->slug }}">{{ $post->postable->name }}</a>
+                                @if (Str::lower(str_replace("App\\Models\\","",$post->postable_type))=='lab' )
+                                    <a href="{{ route('lab.show',['lab'=>$post->postable->slug ])}}">{{  $post->postable->name }}</a>
+                                @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type)=='lab') )
+                                <a href="{{ $post->postable->slug }}">else</a>
+                                @endif
+
                             </small>
                         </div>
                     </div>

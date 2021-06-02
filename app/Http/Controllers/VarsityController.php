@@ -21,6 +21,18 @@ class VarsityController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function panelIndex()
+    {
+        $varsities = Varsity::all();
+
+        return view('adminpanel.varsity.listvarsity', compact('varsities'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -82,7 +94,7 @@ class VarsityController extends Controller
      */
     public function edit(Varsity $varsity)
     {
-        //
+        return $varsity;
     }
 
     /**
@@ -105,6 +117,10 @@ class VarsityController extends Controller
      */
     public function destroy(Varsity $varsity)
     {
+        $varsity->delete();
+        return response()->json([
+            'message' => 'You have deleted this versity Successfully'
+        ], 200);
     }
 
 
@@ -139,6 +155,4 @@ class VarsityController extends Controller
             'courses' => $courses
         ], 200);
     }
-
-
 }
