@@ -257,6 +257,9 @@
                     </div>
                 </div>
             @endforeach
+            <nav class="mt-3" aria-label="Page navigation example">
+                {{ $posts->links('pagination.default') }}
+            </nav>
         @endisset
 
     </div>

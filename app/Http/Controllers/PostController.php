@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        $posts = Post::latest()->limit(80)->get()->paginate(8);
         $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
         return view('post.index',compact('posts','varsities'));
     }
