@@ -17,8 +17,7 @@ var courseClass = function () {
                 'department': $('#departmentselect').val(),
                 'course_prerequisite': $('#courseprerequisites').val()
             }
-            $('#departmentselect').val([]).trigger('change')
-            $('#courseprerequisites').val([]).trigger('change')
+
             $.ajax({
                 type: 'POST',
                 url: window.location.origin + '/panel/course/add',
@@ -36,9 +35,9 @@ var courseClass = function () {
                             confirmButton: "btn btn-primary"
                         }
                     });
-                    $('#course_add').find('input[type="text"]').val('');
-
-
+                    setTimeout(()=>{
+                        location.reload();
+                    },1000)
                 },
                 error: function (xhr, status, error) {
                     var reject = convertToObject(xhr.responseText);
@@ -60,6 +59,7 @@ var courseClass = function () {
     }
     var varsitySelect = () => {
         $('#varsity').select2({
+            placeholder: "Select a Varsity",
             minimumInputLength: 1,
             maximumSelectionLength: 2,
             ajax: {
@@ -89,8 +89,8 @@ var courseClass = function () {
         $('#varsity').change(() => {
             $('#departmentselect').val([]).trigger('change');
             $('#departmentselect').select2({
-                minimumInputLength: 1,
-                maximumSelectionLength: 4,
+                placeholder: "Select Departments",
+                minimumResultsForSearch: Infinity,
                 ajax: {
                     url: window.location.origin + `/panel/varsity/${$('#varsity').val()}/departments`,
                     dataType: "JSON",
@@ -120,6 +120,7 @@ var courseClass = function () {
         $('#varsity').change(() => {
             $('#courseprerequisites').val([]).trigger('change');
             $('#courseprerequisites').select2({
+                placeholder: "Select Course Prerequisite",
                 minimumInputLength: 1,
                 maximumSelectionLength: 2,
                 ajax: {

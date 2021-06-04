@@ -57,7 +57,7 @@
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
                     <div class="card-body">
                         <h2 class="card-title">
-                            <a href="post-detail.html">{{ $post->title }}</a>
+                            <a href="{{ route('post.show', ['post' => $post->slug]) }}">{{ $post->title }}</a>
                         </h2>
                         <p class="card-text">{{ $post->metadescription }}</p>
                         <div class="d-flex text-center border-top border-1 pt-2">
@@ -246,9 +246,9 @@
                             </small>
                             <small class="pt-2 pb-2 me-2 ms-auto">
                                 @if (Str::lower(str_replace('App\\Models\\', '', $post->postable_type)) == 'lab')
-                                    <a
-                                        href="{{ route('lab.show', ['lab' => $post->postable->slug]) }}">{{ $post->postable->name }}</a>
-                                @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type)=='lab') )
+                                <a href="{{ route('lab.show', ['lab' => $post->postable->slug]) }}">{{ Str::upper($post->postable->course->course_code) }}</a>
+                                    <a href="{{ route('lab.show', ['lab' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
+                                @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type)=='assignment') )
                                     <a href="{{ $post->postable->slug }}">else</a>
                                 @endif
 

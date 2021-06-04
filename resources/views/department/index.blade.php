@@ -9,7 +9,7 @@
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">{{ Str::upper($varsity->short_name) }} - Department</h2>
+            <h2 class="text-center fw-bold">{!! !empty($varsity) ? Str::upper($varsity->short_name)." - " : '' !!}Department</h2>
         </div>
         @isset($varsity)
         @foreach ($varsity->depts as $dept)
@@ -29,7 +29,7 @@
                 <h2 class="card-title center">
                     <a style="color: #ececec" href="{{ route('department.show', ['department' => $dept->slug]) }}">
                         @foreach ($dept->varsity as $varsity)
-                        {{ $varsity->name." (".$dept->short_name.")" }}
+                        {{ Str::upper($varsity->short_name)." (".Str::upper($dept->short_name).")" }}
                         @endforeach
                         
                     </a>

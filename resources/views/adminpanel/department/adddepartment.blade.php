@@ -15,7 +15,7 @@
             <h3 class="card-title">Add Department Information</h3>
         </div>
         <!--begin::Form-->
-        <form class="form" id="varsityModal">
+        <form class="form" id="add_department">
             <div class="card-body">
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Select Varsity</label>
@@ -27,13 +27,13 @@
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Department Name</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="department_name" class="form-control" placeholder="Enter varsity name" />
+                        <input type="text" id="department_name" class="form-control" placeholder="Enter Department name" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Department Short Name</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="department_short_name" class="form-control" placeholder="Enter varsity short name" />
+                        <input type="text" id="department_short_name" class="form-control" placeholder="Enter Department short name" />
                     </div>
                 </div>
                 <div class="form-group row">

@@ -17,7 +17,9 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        //
+        $assessments=Assessment::all();
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('assessments.index',compact('assessments','varsities'));
     }
 
     /**

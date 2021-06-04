@@ -124,7 +124,7 @@ var KTTinymce = function () {
                 url=window.location.origin + `/panel/course/${$('#course').val()}/notes`
             }
             else if($('#type').val()=='assessment'){
-                url=window.location.origin + `/panel/course/${$('#course').val()}/assessment`
+                url=window.location.origin + `/panel/course/${$('#course').val()}/assessments`
             }
             $('#type_id').select2({
                 minimumResultsForSearch: Infinity,

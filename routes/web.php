@@ -40,6 +40,7 @@ Route::prefix('/course')->group(function () {
     Route::get('/{course}/book', [App\Http\Controllers\CourseController::class, 'book'])->name('course.book');
 
     Route::get('/{course}/note', [App\Http\Controllers\CourseController::class, 'note'])->name('course.note');
+    
     Route::get('/{course}/assessment', [App\Http\Controllers\CourseController::class, 'assessment'])->name('course.assessment');
 });
 

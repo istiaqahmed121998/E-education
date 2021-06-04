@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Note;
+use App\Models\Varsity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -72,7 +73,8 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        //
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('post.index',compact('note','varsities'));
     }
 
     /**

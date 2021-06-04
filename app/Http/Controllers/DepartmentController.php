@@ -53,9 +53,9 @@ class DepartmentController extends Controller
                 'slug' => $request->get('slug')
             ]);
             if($department){
-                $department->varsitiy()->sync($request->get('varsity'));
+                $department->varsity()->sync($request->get('varsity'));
                 return response()->json([
-                    'message' => 'You have successfully added varsity',
+                    'message' => 'You have successfully added Department',
                 ],200);
             }
             else{

@@ -45,7 +45,12 @@
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Course slug</label>
                     <div class="col-lg-9 col-md-9 col-sm-12">
-                        <input type="text" id="course_slug" class="form-control" placeholder="Enter course slug" />
+                        <div class="input-group">
+                            <div class="input-group-append"><span class="input-group-text">
+                               {{ route('course.index') }}/
+                            </span></div>
+                            <input type="text" id="course_slug" class="form-control" aria-describedby="basic-addon2" placeholder="Enter course slug"/>
+                           </div>
                     </div>
                 </div>
                 <div class="form-group row">

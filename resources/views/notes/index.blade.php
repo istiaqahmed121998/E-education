@@ -1,32 +1,32 @@
 @extends('layouts.master')
 @section('header')
     @parent
-    <title>Assessments {!! !empty($course) ? " - ".$course->course_code : '' !!}</title>
-    <meta name="description" content="Assessments {!! !empty($course) ? " -".$course->course_code : '' !!}">
+    <title>Notes {!! !empty($course) ? " -".$course->course_code : '' !!}</title>
+    <meta name="description" content="notes {!! !empty($course) ? " -".$course->course_code : '' !!}">
     
 @endsection
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">Assessments {!! !empty($course) ? " - ".$course->course_code : '' !!}</h2>
+            <h2 class="text-center fw-bold">Notes {!! !empty($course) ? " - ".$course->course_code : '' !!}</h2>
         </div>
         @isset($course)
-            @foreach ($course->assessments as $assessment)
+            @foreach ($course->notes as $note)
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
                     <div class="card-body tab">
                         <h2 class="card-title center">
-                            <a style="color: #ececec" href="{{ route('assessment.show', ['assessment' => $assessment->slug]) }}">{{ $assessment->name }}</a>
+                            <a style="color: #ececec" href="{{ route('note.show', ['note' => $note->slug]) }}">{{ $note->name }}</a>
                         </h2>
                     </div>
                 </div>
             @endforeach
         @endisset
-        @isset($assessments)
-            @foreach ($assessments as $assessment)
+        @isset($notes)
+            @foreach ($notes as $note)
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
                     <div class="card-body tab">
                         <h2 class="card-title center">
-                            <a style="color: #ececec" href="{{ route('assessment.show', ['assessment' => $assessment->slug]) }}">{{ $assessment->course->course_code }}{!! '<br>' !!}{{ $assessment->name }}</a>
+                            <a style="color: #ececec" href="{{ route('note.show', ['note' => $note->slug]) }}">{{ $note->course->course_code }}{!! '<br>' !!}{{ $note->name }}</a>
                         </h2>
                     </div>
                 </div>

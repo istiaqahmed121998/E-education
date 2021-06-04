@@ -61,7 +61,7 @@ class CourseController extends Controller
                     $course->prerequisite()->sync($request->get('course_prerequisite'));
                 }
                 return response()->json([
-                    'message' => 'You have successfully added varsity',
+                    'message' => 'You have successfully added a course',
                 ],200);
             }
             else{
@@ -153,6 +153,12 @@ class CourseController extends Controller
     {
 
         return view('assessments.index',compact('course'));
+    }
+
+    public function note(Course $course)
+    {
+
+        return view('notes.index',compact('course'));
     }
 
     /**

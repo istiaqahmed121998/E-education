@@ -9,6 +9,7 @@ var departmentClass = function () {
         $('#varsity_select').select2({
             minimumInputLength: 2,
             allowClear: true,
+            placeholder: "Select a Varsity",
             ajax: {
                 url: window.location.origin+'/panel/varsity/getall',
                 dataType: "JSON",
@@ -47,7 +48,6 @@ var departmentClass = function () {
                     url: window.location.origin+'/panel/department/add',
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     data: Department,
-
                     success: function (data) {
                         Swal.fire({
                             title: "Good job!",
@@ -74,8 +74,22 @@ var departmentClass = function () {
                                 }
                             });
                         }
+                        else {
+                            Swal.fire({
+                                title: "Fix this issue first!",
+                                text: xhr.responseText,
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Try Again",
+                                customClass: {
+                                    confirmButton: "btn btn-danger"
+                                }
+                            });
+                        }
                     }
                 });
+                $("#add_department").trigger('reset');
+                $("#varsity_select").empty().trigger('change') 
             });
         }
         var slugSet = () => {

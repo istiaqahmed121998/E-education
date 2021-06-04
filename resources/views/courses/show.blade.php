@@ -9,7 +9,7 @@
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">Courses - {{ $course->name }}</h2>
+            <h2 class="text-center fw-bold">{{ Str::upper($course->depts()->first()->varsity->first()->short_name) }} - {{ $course->name }}</h2>
         </div>
         <div id="section-title" class="section-title p-1 pt-3">
             <h3 class="text-center fw-bold">{{ $course->course_code }}</h3>
