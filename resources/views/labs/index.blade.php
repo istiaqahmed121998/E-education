@@ -8,7 +8,7 @@
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">Lab</h2>
+            <h2 class="text-center fw-bold">Labs {!! !empty($course) ? " -".$course->course_code : '' !!}</h2>
         </div>
         @if (isset($course))
             @foreach ($course->labs as $lab)
@@ -25,7 +25,7 @@
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
                     <div class="card-body tab">
                         <h2 class="card-title center">
-                            <a style="color: #ececec" href="{{ route('lab.show', ['lab' => $lab->slug]) }}">{{ $lab->name }}</a>
+                            <a style="color: #ececec" href="{{ route('lab.show', ['lab' => $lab->slug]) }}">{{ $lab->course->course_code }}{!! '<br>' !!}{{ $lab->name }}</a>
                         </h2>
                     </div>
                 </div>

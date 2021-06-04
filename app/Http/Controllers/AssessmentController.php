@@ -6,6 +6,7 @@ use App\Models\Assessment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
+use App\Models\Varsity;
 
 class AssessmentController extends Controller
 {
@@ -72,7 +73,8 @@ class AssessmentController extends Controller
      */
     public function show(Assessment $assessment)
     {
-        //
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('post.index',compact('assessment','varsities'));
     }
 
     /**

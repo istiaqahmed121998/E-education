@@ -17,34 +17,56 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home.index');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('/varsity')->group(function () {
+    Route::get('/', [App\Http\Controllers\VarsityController::class, 'index'])->name('varsity.index');
+    Route::get('/{varsity}', [App\Http\Controllers\VarsityController::class, 'show'])->name('varsity.show');
+});
 
-Route::get('/varsities', [App\Http\Controllers\VarsityController::class, 'index'])->name('varsity.index');
-Route::get('/varsity/{varsity}', [App\Http\Controllers\VarsityController::class, 'show'])->name('varsity.show');
-
-
-
-Route::get('/depts', [App\Http\Controllers\DepartmentController::class, 'index'])->name('department.index');
-
-Route::get('/depts/{department}', [App\Http\Controllers\DepartmentController::class, 'show'])->name('department.show');
-
+Route::prefix('/department')->group(function () {
+    Route::get('/', [App\Http\Controllers\DepartmentController::class, 'index'])->name('department.index');
+    Route::get('/{department}', [App\Http\Controllers\DepartmentController::class, 'show'])->name('department.show');
+});
 
 
-Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
+Route::prefix('/course')->group(function () {
+    Route::get('/', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
 
-Route::get('/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
+    Route::get('/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
 
-Route::get('/courses/{course}/lab', [App\Http\Controllers\CourseController::class, 'lab'])->name('course.lab');
+    Route::get('/{course}/lab', [App\Http\Controllers\CourseController::class, 'lab'])->name('course.lab');
 
-Route::get('/courses/{course}/assignment', [App\Http\Controllers\CourseController::class, 'assignment'])->name('course.assignment');
+    Route::get('/{course}/assignment', [App\Http\Controllers\CourseController::class, 'assignment'])->name('course.assignment');
 
-Route::get('/courses/{course}/book', [App\Http\Controllers\CourseController::class, 'book'])->name('course.book');
+    Route::get('/{course}/book', [App\Http\Controllers\CourseController::class, 'book'])->name('course.book');
 
-Route::get('/courses/{course}/note', [App\Http\Controllers\CourseController::class, 'note'])->name('course.note');
+    Route::get('/{course}/note', [App\Http\Controllers\CourseController::class, 'note'])->name('course.note');
+    Route::get('/{course}/assessment', [App\Http\Controllers\CourseController::class, 'assessment'])->name('course.assessment');
+});
 
 
-Route::get('lab', [App\Http\Controllers\LabController::class, 'index'])->name('lab.index');
-Route::get('lab/{lab}', [App\Http\Controllers\LabController::class, 'show'])->name('lab.show');
+Route::prefix('/lab')->group(function () {
+    Route::get('/', [App\Http\Controllers\LabController::class, 'index'])->name('lab.index');
+    Route::get('/{lab}', [App\Http\Controllers\LabController::class, 'show'])->name('lab.show');
+});
+
+Route::prefix('/assignment')->group(function () {
+    Route::get('/', [App\Http\Controllers\AssignmentController::class, 'index'])->name('assignment.index');
+    Route::get('/{assignment}', [App\Http\Controllers\AssignmentController::class, 'show'])->name('assignment.show');
+});
+
+Route::prefix('/note')->group(function () {
+    Route::get('/', [App\Http\Controllers\NoteController::class, 'index'])->name('note.index');
+    Route::get('/{note}', [App\Http\Controllers\NoteController::class, 'show'])->name('note.show');
+});
+
+Route::prefix('/assessment')->group(function () {
+    Route::get('/', [App\Http\Controllers\AssessmentController::class, 'index'])->name('assessment.index');
+    Route::get('/{assessment}', [App\Http\Controllers\AssessmentController::class, 'show'])->name('assessment.show');
+});
+
+
+
+
 Route::get('post/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 

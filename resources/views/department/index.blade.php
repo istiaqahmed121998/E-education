@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('header')
     @parent
-    <title>Departments</title>
+    <title>Departments </title>
     <meta name="description" content="Put your description here.">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 @endsection
@@ -9,9 +9,9 @@
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">Department</h2>
+            <h2 class="text-center fw-bold">{{ Str::upper($varsity->short_name) }} - Department</h2>
         </div>
-        @if (isset($varsity))
+        @isset($varsity)
         @foreach ($varsity->depts as $dept)
         <div class="card bg-light shadow bg-body rounded-3 mb-2">
             <div class="card-body tab">
@@ -20,19 +20,24 @@
                 </h2>
             </div>
         </div>
-    @endforeach
-        @else
+        @endforeach
+        @endisset
+        @isset($depts)
         @foreach ($depts as $dept)
         <div class="card bg-light shadow bg-body rounded-3 mb-2">
             <div class="card-body tab">
                 <h2 class="card-title center">
-                    <a style="color: #ececec" href="{{ route('dept.show', ['department' => $dept->slug]) }}">{{ $dept->name }}</a>
+                    <a style="color: #ececec" href="{{ route('department.show', ['department' => $dept->slug]) }}">
+                        @foreach ($dept->varsity as $varsity)
+                        {{ $varsity->name." (".$dept->short_name.")" }}
+                        @endforeach
+                        
+                    </a>
                 </h2>
             </div>
         </div>
-    @endforeach
-        @endif
-
+        @endforeach
+        @endisset
     </div>
 @endsection
 

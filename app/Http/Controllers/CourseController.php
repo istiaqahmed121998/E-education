@@ -130,6 +130,31 @@ class CourseController extends Controller
         return view('labs.index',compact('course'));
     }
 
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function assignment(Course $course)
+    {
+
+        return view('assignments.index',compact('course'));
+    }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function assessment(Course $course)
+    {
+
+        return view('assessments.index',compact('course'));
+    }
+
     /**
      * Get a listing of the resource.
      *
@@ -182,7 +207,7 @@ class CourseController extends Controller
         $notes=Course::find($id)->notes;
         return $notes;
     }
-    public function assessment($id){
+    public function assessments($id){
         $assessments=Course::find($id)->assessments;
         return $assessments;
     }

@@ -1,39 +1,37 @@
 @extends('layouts.master')
 @section('header')
     @parent
-    <title>Courses</title>
+    <title>Assessments {!! !empty($course) ? " -".$course->course_code : '' !!}</title>
     <meta name="description" content="Put your description here.">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 @endsection
-
 @section('content')
     <div class="col-lg-6 col-md-12 col-sm-12">
         <div id="section-title" class="section-title p-1 pt-3">
-            <h2 class="text-center fw-bold">Courses</h2>
+            <h2 class="text-center fw-bold">Assessments {!! !empty($course) ? " -".$course->course_code : '' !!}</h2>
         </div>
-        @isset($department)
-        @foreach ($department->courses as $course)
-        <div class="card bg-light shadow bg-body rounded-3 mb-2">
-            <div class="card-body tab">
-                <h2 class="card-title center">
-                    <a style="color: #ececec" href="{{ route('course.show', ['course'=>$course->slug]) }}">{{ $course->name }}{!! '<br>' !!}{{ "(".$course->course_code.")" }}</a>
-                </h2>
-            </div>
-        </div>
-        @endforeach
-        @endisset
-        @isset($courses)
-        @foreach ($courses as $course)
-        <div class="card bg-light shadow bg-body rounded-3 mb-2">
-            <div class="card-body tab">
-                <h2 class="card-title center">
-                    <a style="color: #ececec" href="{{ route('course.show', ['course'=>$course->slug]) }}">{{ $course->name }}</a>
-                </h2>
-            </div>
-        </div>
-    @endforeach
-        @endisset
-
+        @if (isset($course))
+            @foreach ($course->assessments as $assessment)
+                <div class="card bg-light shadow bg-body rounded-3 mb-2">
+                    <div class="card-body tab">
+                        <h2 class="card-title center">
+                            <a style="color: #ececec" href="{{ route('assessment.show', ['assessment' => $assessment->slug]) }}">{{ $assessment->name }}</a>
+                        </h2>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            @foreach ($assessments as $assessment)
+                <div class="card bg-light shadow bg-body rounded-3 mb-2">
+                    <div class="card-body tab">
+                        <h2 class="card-title center">
+                            <a style="color: #ececec" href="{{ route('assessment.show', ['assessment' => $assessment->slug]) }}">{{ $assessment->course->course_code }}{!! '<br>' !!}{{ $assessment->name }}</a>
+                        </h2>
+                    </div>
+                </div>
+            @endforeach
+                
+        @endif
     </div>
 @endsection
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Course;
+use App\Models\Varsity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class AssignmentController extends Controller
@@ -15,7 +16,9 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        //
+        $assignment=Assignment::all();
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('labs.index',compact('labs','varsities'));
     }
 
     /**
@@ -71,7 +74,8 @@ class AssignmentController extends Controller
      */
     public function show(Assignment $assignment)
     {
-        //
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('post.index',compact('assignment','varsities'));
     }
 
     /**

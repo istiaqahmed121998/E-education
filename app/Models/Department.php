@@ -11,7 +11,7 @@ class Department extends Model
     protected $fillable = ['name','short_name','slug'];
     protected $guarded = ['dean'];
 
-    public function varsitiy(){
+    public function varsity(){
         return $this->belongsToMany(Varsity::class,'varsity_dept','dept_id','varsity_id');
     }
 

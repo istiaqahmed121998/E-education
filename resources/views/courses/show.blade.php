@@ -50,6 +50,15 @@
                 </div>
             </div>
         @endif
+        @if ($course->assessments->count()>0)
+            <div class="card bg-light shadow bg-body rounded-3 mb-2">
+                <div class="card-body tab">
+                    <h2 class="card-title center">
+                        <a style="color: #ececec" href="{{ route('course.assessment',['course'=>$course->slug]) }}">Assessments</a>
+                    </h2>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 
