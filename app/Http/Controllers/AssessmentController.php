@@ -49,7 +49,7 @@ class AssessmentController extends Controller
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::find($request->get('course'));
+            $course=Course::where('slug', $request->get('course'))->firstorfail();
             $assessment=$course->assessments()->create([
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug')

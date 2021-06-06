@@ -57,7 +57,6 @@
                     </div>
                     <div class="form-group">
                     <textarea name="editor1" id="editor1">
-                    This is my textarea to be replaced with CKEditor 4.
                     </textarea>
                     </div>
                     <div class="separator separator-dashed my-10"></div>
@@ -75,7 +74,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-lg-9 ml-lg-auto">
-                            <button type="reset" id="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-primary mr-2">Submit</button>
                             <button type="reset" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>

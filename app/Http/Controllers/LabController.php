@@ -49,7 +49,7 @@ class LabController extends Controller
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::findOrFail($request->get('course'));
+            $course=Course::where('slug', $request->get('course'))->firstorfail();
             $lab=$course->labs()->create([
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug'),
@@ -57,7 +57,7 @@ class LabController extends Controller
             ]);
             if($lab){
                 return response()->json([
-                    'message' => 'You have successfully added varsity',
+                    'message' => 'You have successfully added '.$lab->name,
                 ],200);
             }
             else{

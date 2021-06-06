@@ -17,7 +17,8 @@ var KTTinymce = function () {
     }
     var varsitySelect = () => {
         $('#varsity').select2({
-            minimumInputLength: 1,
+            placeholder: "Select a Varsity",
+            minimumInputLength: 2,
             maximumSelectionLength: 2,
             ajax: {
                 url: window.location.origin + '/panel/varsity/getall',
@@ -46,6 +47,7 @@ var KTTinymce = function () {
         $('#varsity').change(() => {
             $('#department').val([]).trigger('change');
             $('#department').select2({
+                placeholder: "Select a Department",
                 minimumResultsForSearch: Infinity,
                 ajax: {
                     url: window.location.origin + `/panel/varsity/${$('#varsity').val()}/departments`,
@@ -75,7 +77,8 @@ var KTTinymce = function () {
         $('#varsity, #department').change(() => {
             $('#course').val([]).trigger('change');
             $('#course').select2({
-                minimumInputLength: 1,
+                placeholder: "Select a Course",
+                minimumInputLength: 2,
                 maximumSelectionLength: 2,
                 ajax: {
                     url: window.location.origin + `/panel/department/${$('#department').val()}/courses`,

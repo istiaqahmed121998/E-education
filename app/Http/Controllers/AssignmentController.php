@@ -48,7 +48,7 @@ class AssignmentController extends Controller
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::find($request->get('course'));
+            $course=Course::where('slug', $request->get('course'))->firstorfail();
             $assignment=$course->assignments()->create([
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug')

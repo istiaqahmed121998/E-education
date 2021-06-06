@@ -64,13 +64,9 @@ class PostController extends Controller
                     'slug'=>$request->get('slug'),
                     'body'=>$request->get('body'),
                     'metadescription'=>$request->get('metadescription'),
-                    'metatag'=>$request->get('metatag')
+                    'metatag'=>$request->get('metatag'),
+                    'user_id'=>Auth::id(),
                 ]);
-                if(Auth::check()){
-                    $user=User::findOrFail(Auth::id());
-                    $post->user()->associate($user);
-                    $post->save();
-                }
                 if($lab){
                     return response()->json([
                         'message' => 'You have successfully added varsity',

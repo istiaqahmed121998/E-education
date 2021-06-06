@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,7 +42,8 @@ class CourseController extends Controller
             'name'=> 'required',
             'course_code'=>'required',
             'slug'=>'required|unique:courses',
-            'course_credit'=>'required|digits_between:0,1'
+            'course_credit'=>'required|digits_between:0,1',
+            'department'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);   
@@ -54,9 +56,8 @@ class CourseController extends Controller
                 'course_credit'=>$request->get('course_credit'),
             ]);
             if($course){
-                if($request->has('department')) {
-                    $course->depts()->sync($request->get('department'));
-                }
+                $department=Department::where('slug', $request->get('department'))->firstorfail();
+                $course->depts()->sync($department);
                 if($request->has('course_prerequisite')) {
                     $course->prerequisite()->sync($request->get('course_prerequisite'));
                 }

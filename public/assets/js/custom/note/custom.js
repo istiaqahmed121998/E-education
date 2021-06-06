@@ -57,9 +57,8 @@ var noteClass = function () {
     }
     var varsitySelect = () => {
         $('#varsity').select2({
-            
-            
-            minimumInputLength: 1,
+            placeholder:'Select a Varsity',
+            minimumInputLength: 2,
             maximumSelectionLength: 2,
             ajax: {
                 url: window.location.origin + '/panel/varsity/getall',
@@ -88,8 +87,8 @@ var noteClass = function () {
         $('#varsity').change(() => {
             $('#department').val([]).trigger('change');
             $('#department').select2({
-                minimumInputLength: 1,
-                maximumSelectionLength: 4,
+                placeholder:'Select a Department',
+                minimumResultsForSearch: Infinity,
                 ajax: {
                     url: window.location.origin + `/panel/varsity/${$('#varsity').val()}/departments`,
                     dataType: "JSON",
@@ -119,7 +118,8 @@ var noteClass = function () {
         $('#varsity, #department').change(() => {
             $('#course').val([]).trigger('change');
             $('#course').select2({
-                minimumInputLength: 1,
+                placeholder:'Select a course',
+                minimumInputLength: 2,
                 maximumSelectionLength: 2,
                 ajax: {
                     url: window.location.origin + `/panel/department/${$('#department').val()}/courses`,
@@ -136,7 +136,7 @@ var noteClass = function () {
                             results: $.map(data, function (item) {
                                 return {
                                     text: item.course_code,
-                                    id: item.id
+                                    id: item.slug
                                 }
                             })
                         };
@@ -149,7 +149,7 @@ var noteClass = function () {
 
     var slugSet = () => {
         $('#note_name').keyup(() => {
-            var course=(!!$('#course').select2('data')[0].text ? convertToSlug(($('#course').select2('data')[0].text).toLowerCase())+'-' : '').trim();
+            var course=($('#course').val() ? $('#course').val()+'-' : '').trim();
             $('#note_slug').val((course)+convertToSlug($('#note_name').val()));
         });
     }

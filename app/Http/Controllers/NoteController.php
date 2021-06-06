@@ -47,14 +47,14 @@ class NoteController extends Controller
             return response()->json($validator->errors(), 422);   
         }
         else{
-            $course=Course::findOrFail($request->get('course'));
+            $course=Course::where('slug', $request->get('course'))->firstorfail();
             $note=$course->notes()->create([
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug')
             ]);
             if($note){
                 return response()->json([
-                    'message' => 'You have successfully added Assignment',
+                    'message' => 'You have successfully added a note',
                 ],200);
             }
             else{

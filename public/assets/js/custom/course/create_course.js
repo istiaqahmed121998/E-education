@@ -17,7 +17,9 @@ var courseClass = function () {
                 'department': $('#departmentselect').val(),
                 'course_prerequisite': $('#courseprerequisites').val()
             }
-
+            $('#var').val([]).trigger('change');
+            $('#departmentselect').val([]).trigger('change');
+            $('#varsity').val([]).trigger('change');
             $.ajax({
                 type: 'POST',
                 url: window.location.origin + '/panel/course/add',
@@ -35,9 +37,6 @@ var courseClass = function () {
                             confirmButton: "btn btn-primary"
                         }
                     });
-                    setTimeout(()=>{
-                        location.reload();
-                    },1000)
                 },
                 error: function (xhr, status, error) {
                     var reject = convertToObject(xhr.responseText);
@@ -55,6 +54,7 @@ var courseClass = function () {
                     }
                 }
             });
+            $('#course_add').find('input[type="text"]').val('');
         });
     }
     var varsitySelect = () => {
@@ -106,7 +106,7 @@ var courseClass = function () {
                             results: $.map(data.department, function (item) {
                                 return {
                                     text: item.short_name,
-                                    id: item.id
+                                    id: item.slug
                                 }
                             })
                         };
@@ -155,13 +155,8 @@ var courseClass = function () {
 
     var slugSet = () => {
         $('#course_code').keyup(() => {
-            var varsity=(!!$('#varsity').select2('data')[0].text ? convertToSlug(($('#varsity').select2('data')[0].text).toLowerCase())+'-' : '').trim();
-            $('#course_slug').val((varsity)+convertToSlug($('#course_code').val()));
-        });
-        $('#varsity').change(() => {
-            var varsity1=(!!$('#varsity').select2('data')[0].text ? convertToSlug(($('#varsity').select2('data')[0].text).toLowerCase())+'-' : '').trim();
-            var course=(!!$("#course_code").val() ? convertToSlug($("#course_code").val()) : '').trim();
-            $('#course_slug').val(varsity1+convertToSlug(course));
+            var department=($('#departmentselect').val() ? $('#departmentselect').val()+'-' : '').trim();
+            $('#course_slug').val((department)+convertToSlug($('#course_code').val()));
         });
     }
 

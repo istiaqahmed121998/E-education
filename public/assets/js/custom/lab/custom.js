@@ -8,7 +8,6 @@ var labClass = function () {
     }
     var submitLabForm = () => {
         $('#submit').click(function (e) {
-            
             e.preventDefault();
             var lab = {
                 'name': $('#lab_name').val(),
@@ -60,6 +59,7 @@ var labClass = function () {
         $('#varsity').select2({
             minimumInputLength: 1,
             maximumSelectionLength: 2,
+            placeholder:'Select a varsity',
             ajax: {
                 url: window.location.origin + '/panel/varsity/getall',
                 dataType: "JSON",
@@ -87,8 +87,8 @@ var labClass = function () {
         $('#varsity').change(() => {
             $('#department').val([]).trigger('change');
             $('#department').select2({
-                minimumInputLength: 1,
-                maximumSelectionLength: 4,
+                minimumResultsForSearch: Infinity,
+                placeholder:'Select Department',
                 ajax: {
                     url: window.location.origin + `/panel/varsity/${$('#varsity').val()}/departments`,
                     dataType: "JSON",
@@ -118,8 +118,9 @@ var labClass = function () {
         $('#varsity, #department').change(() => {
             $('#course').val([]).trigger('change');
             $('#course').select2({
-                minimumInputLength: 1,
+                minimumInputLength: 2,
                 maximumSelectionLength: 2,
+                placeholder:'Select a course',
                 ajax: {
                     url: window.location.origin + `/panel/department/${$('#department').val()}/courses`,
                     dataType: "JSON",
@@ -135,7 +136,7 @@ var labClass = function () {
                             results: $.map(data, function (item) {
                                 return {
                                     text: item.course_code,
-                                    id: item.id
+                                    id: item.slug
                                 }
                             })
                         };
@@ -148,7 +149,7 @@ var labClass = function () {
 
     var slugSet = () => {
         $('#lab_name').keyup(() => {
-            var course=(!!$('#course').select2('data')[0].text ? convertToSlug(($('#course').select2('data')[0].text).toLowerCase())+'-' : '').trim();
+            var course=($('#course').val() ? $('#course').val()+'-' : '').trim();
             $('#lab_slug').val(course+convertToSlug($('#lab_name').val()));
         });
     }

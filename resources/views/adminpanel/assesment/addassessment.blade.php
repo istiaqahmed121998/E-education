@@ -15,7 +15,7 @@
             <h3 class="card-title">Add Assessment</h3>
         </div>
         <!--begin::Form-->
-        <form class="form" id="assesment_add">
+        <form class="form" id="assessment_add">
             <div class="card-body">
                 <div class="form-group row">
                     <label class="col-form-label text-left col-lg-3 col-sm-12">Varsity</label>
