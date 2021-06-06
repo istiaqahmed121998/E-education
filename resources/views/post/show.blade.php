@@ -5,6 +5,10 @@
     <meta name="description" content="{{ $post->metadescription }}">
     <meta name="author" content="{{ $post->user->name }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/dist/sweetalert2.min.css') }}">
+    <link rel="stylesheet"
+      href="{{ asset('assets/js/highlight/styles/default.css') }}">
+      <link rel="stylesheet"
+      href="{{ asset('assets/js/highlight/styles/stackoverflow-dark.css') }}">
 @endsection
 
 @section('content')
@@ -213,7 +217,7 @@
 @endsection
 
 @section('extrajs')
-<script src="{{ asset('assets/js/highlight.pack.js') }}"></script>
+<script src="{{ asset('assets/js/highlight/highlight.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/sweetalert/dist/sweetalert2.min.js') }}"></script>
 <script>
     const copyBtn = document.getElementById('copyBtn')
