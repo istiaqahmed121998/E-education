@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('header')
     @parent
-    <title>Education</title>
+    <title>Note Lagbe</title>
     <meta name="description" content="Put your description here.">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 @endsection

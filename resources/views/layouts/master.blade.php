@@ -23,7 +23,7 @@
                 <div class="col-md-3 d-none d-lg-block">
                     <a href="{{ url('/') }}" class="d-flex  col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none"
                         data-label="Site logo">
-                        <img src="{{ asset('assets/img/bisabos.png') }}" height="40px" width="40px" alt="">
+                        <img src="{{ asset('assets/img/logo.png') }}" height="40px" width="40px" alt="">
                     </a>
                 </div>
                 <div class="col-md-6 d-none d-lg-block">
@@ -77,7 +77,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-lg-none d-xl-none">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('assets/img/bisabos.png') }}" alt="Bisabos" height="40px"
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Bisabos" height="40px"
                         width="40px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -222,34 +222,6 @@
                                         Privacy Policy
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('varsity.index') }}" class="nav-link link-dark">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-card-text me-2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z">
-                                            </path>
-                                            <path
-                                                d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z">
-                                            </path>
-                                        </svg>
-                                        Varsities
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('department.index') }}" class="nav-link link-dark">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-card-text me-2" viewBox="0 0 16 16">
-                                            <path
-                                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z">
-                                            </path>
-                                            <path
-                                                d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z">
-                                            </path>
-                                        </svg>
-                                        Department
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                         <!-- Left Sidebar -->
@@ -278,10 +250,10 @@
     <footer id="footer" class="border-1 border-top border-primary">
         <div class="container-fluid py-4">
             <div class="copyright">
-                © Copyright <strong><span>Blogobox</span></strong>. All Rights Reserved
+                © Copyright <strong><span>Note Lagbe</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                Designed by <a href="https://bisabos.com/">Bisabos</a>
+                Designed by <a href="https://www.notelagbe.com/">Notelagbe</a>
             </div>
         </div>
     </footer>

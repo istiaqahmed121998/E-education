@@ -20,7 +20,6 @@ class CreatePostsTable extends Migration
             $table->longText('body');
             $table->string('metadescription');
             $table->string('metatag');
-            $table->integer('views')->default(0);
             $table->boolean('status')->default('1');
             $table->unsignedBigInteger('postable_id');
             $table->string('postable_type');

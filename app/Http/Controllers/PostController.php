@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Lab;
 use App\Models\Post;
+use App\Models\PostView;
 use App\Models\User;
 use App\Models\Varsity;
 use Illuminate\Http\Request;
@@ -51,12 +53,16 @@ class PostController extends Controller
             'type'=>'required',
             'type_id'=>'required',
             'metadescription'=>'required',
-            'metatag'=>'required'
+            'metatag'=>'required',
+            'varsity'=>'required',
+            'department'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);   
         }
         else{
+            $varsity_id=Varsity::where('short_name','=',$request->get('varsity'))->firstorfail()->id;
+            $department_id=Department::where('short_name','=',$request->get('department'))->firstorfail()->id;
             if($request->get('type')=='lab'){
                 $lab=Lab::findOrFail($request->get('type_id'));
                 $post=$lab->posts()->create([
@@ -66,6 +72,9 @@ class PostController extends Controller
                     'metadescription'=>$request->get('metadescription'),
                     'metatag'=>$request->get('metatag'),
                     'user_id'=>Auth::id(),
+                    'varsity_id'=>$varsity_id,
+                    'department_id'=>$department_id,
+
                 ]);
                 if($lab){
                     return response()->json([
@@ -90,6 +99,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if($post->showPost()){// this will test if the user viwed the post or not
+            return view('post.show',compact('post'));
+        }
+        $post->increment('views');//I have a separate column for views in the post table. This will increment the views column in the posts table.
+        PostView::createViewLog($post);
         return view('post.show',compact('post'));
     }
 

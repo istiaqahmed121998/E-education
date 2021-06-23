@@ -16,6 +16,10 @@ class Varsity extends Model
 
         return $this->belongsToMany(Department::class, 'varsity_dept', 'varsity_id', 'dept_id');
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class,'varsity_id','id')->orderBy('views','DESC');
+    }
     public function getRouteKeyName()
     {
         return 'slug';

@@ -165,41 +165,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="d-flex flex-column bg-light bg-body shadow-lg rounded-3 d-md-none d-lg-none d-xl-none">
-                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                    Tags
-                </div>
-                <div class="p-3 overflow-auto" style="max-height: 42vh">
-                    <div class="nav tag-cloud">
-                        <a href="https://laros.id/tags/laravel">Laravel</a>
-                        <a href="https://laros.id/tags/bisnis">Bisnis</a>
-                        <a href="https://laros.id/tags/blogging">Blogging</a>
-                        <a href="https://laros.id/tags/template">Template</a>
-                        <a href="https://laros.id/tags/bootstrap">Bootstrap</a>
-                        <a href="https://laros.id/tags/security">Security</a>
-                        <a href="https://laros.id/tags/nexmo">Nexmo</a>
-                        <a href="https://laros.id/tags/seo">SEO</a>
-                        <a href="https://laros.id/tags/toko-online">Toko Online</a>
-                        <a href="https://laros.id/tags/jivochat">Jivochat</a>
-                        <a href="https://laros.id/tags/plugin">Plugin</a>
-                        <a href="https://laros.id/tags/tawkto">Tawkto</a>
-                        <a href="https://laros.id/tags/tokopedia">Tokopedia</a>
-                        <a href="https://laros.id/tags/ruang-guru">Ruang Guru</a>
-                        <a href="https://laros.id/tags/stack">Stack</a>
-                        <a href="https://laros.id/tags/wfh">WFH</a>
-                        <a href="https://laros.id/tags/disqus">Disqus</a>
-                        <a href="https://laros.id/tags/katalon">Katalon</a>
-                        <a href="https://laros.id/tags/selenium">Selenium</a>
-                        <a href="https://laros.id/tags/vonage">Vonage</a>
-                        <a href="https://laros.id/tags/twilio">Twilio</a>
-                        <a href="https://laros.id/tags/xampp">Xampp</a>
-                        <a href="https://laros.id/tags/larablog">Larablog</a>
-                        <a href="https://laros.id/tags/tinymce">TinyMCE</a>
-                        <a href="https://laros.id/tags/animation">Animation</a>
-                        <a href="https://laros.id/tags/restapi">RestAPI</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable=['title','slug','body','metadescription','metatag','user_id'];
+    protected $fillable = ['title', 'slug', 'body', 'metadescription', 'metatag', 'user_id','varsity_id'];
     protected $types = [
         'lab' => 'App\Model\Lab',
     ];
@@ -19,15 +19,17 @@ class Post extends Model
         return $this->morphTo();
     }
 
-    public function user(){
-        return $this->belongsTo(User::class,'user_id','id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
-    public function getImageableTypeAttribute($type) {
+    public function getImageableTypeAttribute($type)
+    {
         // transform to lower case
         $type = strtolower($type);
 
@@ -36,5 +38,21 @@ class Post extends Model
 
         // which is always safe, because new 'class'
         // will work just the same as new 'Class'
+    }
+    public function postView()
+    {
+        return $this->hasMany(PostView::class);
+    }
+    public function showPost()
+    {
+        if (auth()->id() == null) {
+            return $this->postView()
+                ->where('ip', '=',  request()->ip())->exists();
+        }
+        return $this->postView()->where(function ($postViewsQuery) {
+                $postViewsQuery
+                    ->where('session_id', '=', request()->getSession()->getId())
+                    ->orWhere('user_id', '=', (auth()->check()));
+            })->exists();
     }
 }

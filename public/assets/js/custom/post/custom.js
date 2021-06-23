@@ -74,6 +74,7 @@ var KTTinymce = function () {
         });
     }
     var courseSelect = () => {
+        
         $('#varsity, #department').change(() => {
             $('#course').val([]).trigger('change');
             $('#course').select2({
@@ -256,6 +257,9 @@ var KTTinymce = function () {
                 'metadescription': $('#metadescription').val(),
                 'metatag': tagify1GetValue.join(),
                 'tags': tagify1GetValue.join(', '),
+                'varsity':($('#varsity').select2('data')[0]['text']).trim(),
+                'department':($('#department').select2('data')[0]['text']).trim()
+                
             };
             $('#department').val([]).trigger('change');
             $('#varsity').val([]).trigger('change');

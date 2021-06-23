@@ -15,6 +15,10 @@ class Department extends Model
         return $this->belongsToMany(Varsity::class,'varsity_dept','dept_id','varsity_id');
     }
 
+    public function posts(){
+        return $this->hasMany(Post::class,'department_id','id')->orderBy('views','DESC');
+    }
+
     public function courses(){
         return $this->belongsToMany(Course::class,'dept_course','dept_id','course_id');
     }
