@@ -74,7 +74,9 @@ class NoteController extends Controller
     public function show(Note $note)
     {
         $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('post.index',compact('note','varsities'));
+        $next=$note->next();
+        $previous=$note->previous();
+        return view('post.index',compact('note','varsities','next','previous'));
     }
 
     /**

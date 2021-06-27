@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'slug', 'body', 'metadescription', 'metatag', 'user_id','varsity_id'];
+    protected $fillable = ['title', 'slug', 'body', 'metadescription', 'metatag', 'user_id','varsity_id','department_id','course_id'];
     protected $types = [
         'lab' => 'App\Model\Lab',
     ];
@@ -54,5 +54,15 @@ class Post extends Model
                     ->where('session_id', '=', request()->getSession()->getId())
                     ->orWhere('user_id', '=', (auth()->check()));
             })->exists();
+    }
+    public function next(){
+        // get next 
+        return $this->where('id', '>', $this->id)->orderBy('id','desc')->first();
+    
+    }
+    public  function previous(){
+        // get previous 
+        return $this->where('id', '<', $this->id)->orderBy('id','desc')->first();
+    
     }
 }

@@ -44,4 +44,7 @@ class Course extends Model
     {
         return 'slug';
     }
+    public function posts(){
+        return $this->hasMany(Post::class,'course_id','id')->orderBy('views','DESC');
+    }
 }

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home.index');
+Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
 Auth::routes();
 
 Route::prefix('/varsity')->group(function () {

@@ -11,7 +11,7 @@
         <div id="section-title" class="section-title p-1 pt-3">
             <h2 class="text-center fw-bold">{!! !empty($varsity) ? Str::upper($varsity->short_name) . ' - ' : '' !!}Department</h2>
         </div>
-        
+
         @isset($varsity)
             @foreach ($varsity->depts as $dept)
                 <div class="card bg-light shadow bg-body rounded-3 mb-2">
@@ -58,7 +58,70 @@
                     <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
                         {{ Str::upper($varsity->short_name) }} Top Post
                     </div>
+
                     <ul class="list-group list-group-flush mb-2">
+                        @foreach ($varsity->posts()->take(5)->get() as $post)
+                            <li class="list-group-item">
+                                <a href="{{ route('post.show',['post'=>$post]) }}">{{ $post->title }}</a>
+                                <div>
+                                    <small class="text-muted">{{ date('d-m-Y', strtotime($post->created_at)) }} ,</small>
+                                    <small class="text-muted">{{ $post->views }} Views</small>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+
+
+                </div>
+            @endisset
+            @isset($depts)
+                <div class="bg-light shadow bg-body rounded-3 mb-3">
+                    <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
+                        Top dept
+                    </div>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
+                            <div>
+                                <small class="text-muted">27 April 2021,</small>
+                                <small class="text-muted">5500 views </small>
+                            </div>
+                        </li>
                         <li class="list-group-item">
                             Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
                             <div>
@@ -68,64 +131,6 @@
                         </li>
                     </ul>
                 </div>
-            @endisset
-            @isset($depts)
-            <div class="bg-light shadow bg-body rounded-3 mb-3">
-                <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                    Top dept
-                </div>
-                <ul class="list-group list-group-flush mb-2">
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                        <div>
-                            <small class="text-muted">27 April 2021,</small>
-                            <small class="text-muted">5500 views </small>
-                        </div>
-                    </li>
-                </ul>
-            </div>
             @endisset
         </div>
     </div>

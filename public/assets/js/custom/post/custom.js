@@ -258,7 +258,8 @@ var KTTinymce = function () {
                 'metatag': tagify1GetValue.join(),
                 'tags': tagify1GetValue.join(', '),
                 'varsity':($('#varsity').select2('data')[0]['text']).trim(),
-                'department':($('#department').select2('data')[0]['text']).trim()
+                'department':($('#department').select2('data')[0]['text']).trim(),
+                'course':($('#course').select2('data')[0]['text']).trim()
                 
             };
             $('#department').val([]).trigger('change');

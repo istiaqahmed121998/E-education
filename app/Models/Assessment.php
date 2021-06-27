@@ -21,4 +21,14 @@ class Assessment extends Model
     {
         return 'slug';
     }
+    public function next(){
+        // get next 
+        return $this->where('id', '>', $this->id)->orderBy('id','desc')->first();
+    
+    }
+    public  function previous(){
+        // get previous 
+        return $this->where('id', '<', $this->id)->orderBy('id','desc')->first();
+    
+    }
 }

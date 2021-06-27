@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Post;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -179,8 +180,6 @@ class CourseController extends Controller
 
     public function all($id){
 
-        //count($model->relation);
-        // return json_encode(array("Peter"=>35, "Ben"=>37, "Joe"=>43));
         $course=Course::find($id);
         $group=[];
         

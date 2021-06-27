@@ -75,7 +75,9 @@ class AssignmentController extends Controller
     public function show(Assignment $assignment)
     {
         $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('post.index',compact('assignment','varsities'));
+        $next=$assignment->next();
+        $previous=$assignment->previous();
+        return view('post.index',compact('note','varsities','next','previous'));
     }
 
     /**

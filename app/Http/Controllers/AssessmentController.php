@@ -76,7 +76,9 @@ class AssessmentController extends Controller
     public function show(Assessment $assessment)
     {
         $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('post.index',compact('assessment','varsities'));
+        $next=$assessment->next();
+        $previous=$assessment->previous();
+        return view('post.index',compact('assessment','varsities','next','previous'));
     }
 
     /**

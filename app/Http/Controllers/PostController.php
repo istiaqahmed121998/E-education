@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessment;
+use App\Models\Assignment;
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lab;
+use App\Models\Note;
 use App\Models\Post;
 use App\Models\PostView;
 use App\Models\User;
@@ -38,6 +42,19 @@ class PostController extends Controller
         return view('adminpanel.post.addpost',compact('varsities'));
     }
 
+    public function typePost($type,$request,$varsity_id,$department_id,$course_id){
+        return $type->posts()->create([
+            'title'=> $request->get('title'),
+            'slug'=>$request->get('slug'),
+            'body'=>$request->get('body'),
+            'metadescription'=>$request->get('metadescription'),
+            'metatag'=>$request->get('metatag'),
+            'user_id'=>Auth::id(),
+            'varsity_id'=>$varsity_id,
+            'department_id'=>$department_id,
+            'course_id'=>$course_id
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -63,26 +80,43 @@ class PostController extends Controller
         else{
             $varsity_id=Varsity::where('short_name','=',$request->get('varsity'))->firstorfail()->id;
             $department_id=Department::where('short_name','=',$request->get('department'))->firstorfail()->id;
+            $course_id=Course::where('course_code','=',$request->get('course'))->firstorfail()->id;
             if($request->get('type')=='lab'){
                 $lab=Lab::findOrFail($request->get('type_id'));
-                $post=$lab->posts()->create([
-                    'title'=> $request->get('title'),
-                    'slug'=>$request->get('slug'),
-                    'body'=>$request->get('body'),
-                    'metadescription'=>$request->get('metadescription'),
-                    'metatag'=>$request->get('metatag'),
-                    'user_id'=>Auth::id(),
-                    'varsity_id'=>$varsity_id,
-                    'department_id'=>$department_id,
-
-                ]);
-                if($lab){
+                $post=$this->typePost($lab,$request,$varsity_id,$department_id,$course_id);
+                if($post){
                     return response()->json([
-                        'message' => 'You have successfully added varsity',
+                        'message' => 'You have successfully added Lab',
                     ],200);
                 }
             }
-            
+            else if($request->get('type')=='assignemt'){
+                $assignment=Assignment::findOrFail($request->get('type_id'));
+                $post=$this->typePost($assignment,$request,$varsity_id,$department_id,$course_id);
+                if($post){
+                    return response()->json([
+                        'message' => 'You have successfully added Assignment',
+                    ],200);
+                }
+            }
+            else if($request->get('type')=='assessment'){
+                $assessment=Assessment::findOrFail($request->get('type_id'));
+                $post=$this->typePost($assessment,$request,$varsity_id,$department_id,$course_id);
+                if($post){
+                    return response()->json([
+                        'message' => 'You have successfully added Assignment',
+                    ],200);
+                }
+            }
+            else if($request->get('type')=='note'){
+                $note=Note::findOrFail($request->get('type_id'));
+                $post=$this->typePost($note,$request,$varsity_id,$department_id,$course_id);
+                if($post){
+                    return response()->json([
+                        'message' => 'You have successfully added Assignment',
+                    ],200);
+                }
+            }
             else{
                 return response()->json([
                     'message' => 'There is something wrong',
@@ -135,6 +169,22 @@ class PostController extends Controller
         if($post){
             return redirect()->route('admin.index');
         }
+    }
+
+    public function search(Request $request){
+        // Get the search value from the request
+        $search = $request->input('search');
+    
+        // Search in the title and body columns from the posts table
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('slug', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%")
+            ->get()->paginate(8);
+    
+        // Return the search view with the resluts compacted
+        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
+        return view('post.index',compact('posts','varsities'));
     }
 
     /**

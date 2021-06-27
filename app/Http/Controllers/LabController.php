@@ -76,9 +76,10 @@ class LabController extends Controller
      */
     public function show(Lab $lab)
     {
-       // dd($lab);
        $varsities=Varsity::inRandomOrder()->take(5)->get()->sortByDesc('created_at');
-        return view('post.index',compact('lab','varsities'));
+       $next=$lab->next();
+       $previous=$lab->previous();
+       return view('post.index',compact('lab','varsities','next','previous'));
         
     }
 
