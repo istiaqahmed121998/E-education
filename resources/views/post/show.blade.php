@@ -3,6 +3,12 @@
     @parent
     <title>Note Lagbe - {{ $post->title }}</title>
     <meta name="description" content="{{ $post->metadescription }}">
+    {{-- Facebook Meta Tag --}}
+    <meta property="og:url" content="{{ route('post.show', ['post' => $post]) }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $post->title }}" />
+    <meta property="og:description" content="{{ $post->metadescription }}" />
+    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
     <meta name="author" content="{{ $post->user->name }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/dist/sweetalert2.min.css') }}">
@@ -68,8 +74,7 @@
         <div class="card border-primary mb-3 d-md-none d-lg-none d-xl-none">
             <div class="p-2 border-bottom border-2">
                 <div class="input-group mb-2">
-                    <input type="text" class="copyURL form-control"
-                        value="{{ route('post.show', ['post' => $post]) }}"
+                    <input type="text" class="copyURL form-control" value="{{ route('post.show', ['post' => $post]) }}"
                         id="copyURL" readonly aria-label="URL Copy">
                     <button class="btn btn-primary" id="copyButton" aria-label="URL Copy">
                         <span aria-hidden="true">

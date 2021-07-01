@@ -260,7 +260,6 @@
                                 @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type))=='note' )
                                 <a href="{{ route('note.show', ['note' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
                                 @endif
-
                             </small>
                         </div>
                     </div>

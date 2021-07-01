@@ -57,70 +57,24 @@
                         @foreach ($department->posts()->take(5)->get() as $post)
                             <li class="list-group-item">
                                 <a href="{{ route('post.show',['post'=>$post]) }}">{{ $post->title }}</a>
+                                <small>(
+                                    <a href="{{ route('lab.show', ['lab' => $post->postable->slug]) }}">{{ Str::upper($post->postable->course->course_code) }}</a>
+                                    @if (Str::lower(str_replace('App\\Models\\', '', $post->postable_type)) == 'lab')
+                                        <a href="{{ route('lab.show', ['lab' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
+                                    @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type))=='assignment' )
+                                    <a href="{{ route('assignment.show', ['assignment' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
+                                    @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type))=='assessment' )
+                                    <a href="{{ route('assessment.show', ['assessment' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
+                                    @elseif (Str::lower(str_replace("App\\Models\\","",$post->postable_type))=='note' )
+                                    <a href="{{ route('note.show', ['note' => $post->postable->slug]) }}">{{ Str::upper($post->postable->name) }}</a>
+                                    @endif)
+                                </small>
                                 <div>
                                     <small class="text-muted">{{ date('d-m-Y', strtotime($post->created_at)) }} ,</small>
                                     <small class="text-muted">{{ $post->views }} Views</small>
                                 </div>
                             </li>
                         @endforeach
-                    </ul>
-                </div>
-            @endisset
-            @isset($depts)
-                <div class="bg-light shadow bg-body rounded-3 mb-3">
-                    <div class="card-header bg-primary bg-gradient text-white fw-bold fs-5">
-                        Top dept
-                    </div>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            Integrasi Ckeditor dengan Laravel File Manager di Laravel 8
-                            <div>
-                                <small class="text-muted">27 April 2021,</small>
-                                <small class="text-muted">5500 views </small>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             @endisset
